@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 17:57:08 by gbodur            #+#    #+#             */
-/*   Updated: 2025/11/16 18:35:16 by gbodur           ###   ########.fr       */
+/*   Updated: 2025/11/16 20:12:01 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ PhoneBook::PhoneBook()
 
 bool	PhoneBook::input_check(string prompt, string &result)
 {
+	bool has_non_ascii;
+	unsigned char c;
 	
+	has_non_ascii = false;
 	while (true)
 	{
 		cout << "Please, enter the " << prompt << ": " << endl;
@@ -39,7 +42,26 @@ bool	PhoneBook::input_check(string prompt, string &result)
 			return (false);
 		}
 		if (result.empty())
+		{
 			cout << "You supposed to give a detail, table cannot be empty. " << endl;
+			
+		}
+		if (prompt )
+		for (size_t i = 0; i < result.length(); i++)
+        {
+			c = static_cast<unsigned char>(result[i]);
+            if (c > 127)
+            {
+                has_non_ascii = true;
+                break;
+            }
+		}
+		if (has_non_ascii)
+        {
+            cout << "Input contains non-ASCII (e.g., Turkish) characters." << endl;
+            cout << "Please use only standard English characters." << endl;
+            continue; 
+        }
 		else
 			break ;
 	}
@@ -93,70 +115,35 @@ void PhoneBook::addContact()
 
 void	PhoneBook::detail_search() const
 {
-	string	temp_name;
-	string	temp_surname;
-	string	temp_nickname;
-	string	temp_number;
-	string	temp_secret;
 	int		search_i;
-	string	title[6] = 
+	
+	while (true)
 	{
-		"index",
-		"first name",
-		"last name",
-		"nickname",
-		"phone number",
-		"darkest secret",
-	};
-	cout << "Please, choose a specific line" << endl;
-	cin >> search_i;
-	if (cin.fail())
-	{
-		cout << "\nExit request has been detected. See you!." << endl;
-		return ;
+		cout << "Please, choose a specific line (1-" << this->_contact_count << "):" << endl;
+		cin >> search_i;
+		if (cin.fail())
+		{
+			cout << "\nExit request has been detected. See you!." << endl;
+			cin.clear();
+			cin.ignore(10000, '\n');
+			continue;
+		}
+		else if (search_i < 1 || search_i > this->_contact_count)
+		{
+			cout << "Your choose is empty or out of range. My range between 1 to 8." << endl;
+			continue;
+		}
+		else
+			break ;
 	}
-	if (search_i < 1 || search_i > this->_contact_count)
-	{
-		cout << "Please, ask a valid line" << endl;
-		detail_search();
-	}
+	const Contact& C = this->_contact[search_i - 1];
 	cout << endl;
-	cout << right;
-	cout << "     -------------------------------------------------------------" << endl;
-	for (int i = 0; i < 6; i++)
-	{
-		if (title[i].length() > 10)
-			title[i] = title[i].substr(0, 9) + ".";
-		cout << setw(10) << title[i] << "|"; 
-	}
-	cout << endl;
-	cout << "     -------------------------------------------------------------" << endl;
-	cout << setw(10) << search_i << "|";
-	temp_name =  this->_contact[search_i - 1].getFirstName();
-	if (temp_name.length() > 10)
-		temp_name = temp_name.substr(0, 9) + ".";
-	cout << setw(10) << temp_name << "|";
-	
-	temp_surname = this->_contact[search_i - 1].getLastName();
-	if (temp_surname.length() > 10)
-		temp_surname = temp_surname.substr(0, 9) + ".";
-	cout << setw(10) << temp_surname << "|";
-	
-	temp_nickname = this->_contact[search_i - 1].getNickname();
-	if (temp_nickname.length() > 10)
-		temp_nickname = temp_nickname.substr(0 ,9) + ".";
-	cout << setw(10) << temp_nickname << "|";
-	
-	temp_number = this->_contact[search_i - 1].getPhoneNumber();
-	if (temp_number.length() > 10)
-		temp_number = temp_number.substr(0, 9) + ".";
-	cout << setw(10) << temp_number << "|";
-	
-	temp_secret = this->_contact[search_i - 1].getDarkestSecret();
-	if (temp_secret.length() > 10)
-		temp_secret = temp_secret.substr(0, 9) + ".";
-	cout << setw(10) << temp_secret << "|";
-	cout << endl;
+    cout << "--- Contact Details ---" << endl;
+    cout << "First Name:     " << C.getFirstName() << endl;
+    cout << "Last Name:      " << C.getLastName() << endl;
+    cout << "Nickname:       " << C.getNickname() << endl;
+    cout << "Phone Number:   " << C.getPhoneNumber() << endl;
+    cout << "Darkest Secret: " << C.getDarkestSecret() << endl;
 
 }
 
@@ -201,7 +188,7 @@ void	PhoneBook::searchContact() const
 
 		given_nickname = this->_contact[i].getNickname();
 		if (given_nickname.length() > 10)
-			given_nickname = given_nickname.substr(0 ,9) + ".";
+			given_nickname = given_nickname.substr(0, 9) + ".";
 		cout << setw(10) << given_nickname << "|";
 
 		cout << endl;
@@ -210,11 +197,15 @@ void	PhoneBook::searchContact() const
 	detail_search();
 }
 
-int main()
+int main(int argc, char **argv)
 {
 	PhoneBook	mydata;
 	string		command;
 	
+	(void)argv;
+	
+	if (argc != 1)
+		return (1);
 	while(true)
 	{
 		cout << "Please, enter what will you do as ADD, SEARCH or EXIT: "<< endl;
