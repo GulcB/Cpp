@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 17:55:29 by gbodur            #+#    #+#             */
-/*   Updated: 2025/11/16 19:11:33 by gbodur           ###   ########.fr       */
+/*   Updated: 2025/11/17 12:11:56 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <string>
 #include <iostream>
 #include <iomanip>
+#include <cctype>
 #include "Contact.hpp"
 
 using std::string;
@@ -31,7 +32,7 @@ class PhoneBook
 		PhoneBook();
 		void	addContact() ;
 		void	searchContact() const;
-		bool	input_check(string prompt, string &result);
+		bool	input_check(string prompt, string &result, bool phone_num);
 		void	detail_search() const;
 		
 };

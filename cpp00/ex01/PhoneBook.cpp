@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 17:57:08 by gbodur            #+#    #+#             */
-/*   Updated: 2025/11/16 20:12:01 by gbodur           ###   ########.fr       */
+/*   Updated: 2025/11/17 12:56:12 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,16 @@ PhoneBook::PhoneBook()
 	this->_contact_count = 0;
 }
 
-bool	PhoneBook::input_check(string prompt, string &result)
+bool	PhoneBook::input_check(string prompt, string &result, bool phone_num)
 {
 	bool has_non_ascii;
+	bool valid_number;
 	unsigned char c;
 	
-	has_non_ascii = false;
 	while (true)
 	{
+		has_non_ascii = false;
+		
 		cout << "Please, enter the " << prompt << ": " << endl;
 		getline(cin, result);
 		if (cin.fail())
@@ -44,9 +46,26 @@ bool	PhoneBook::input_check(string prompt, string &result)
 		if (result.empty())
 		{
 			cout << "You supposed to give a detail, table cannot be empty. " << endl;
+			continue;
 			
 		}
-		if (prompt )
+		if (phone_num)
+		{
+			valid_number = true;
+			for (size_t i = 0; i < result.length(); i++)
+			{
+				if (!isdigit(result[i]))
+				{
+					valid_number = false;
+					break;
+				}
+			}
+			if (!valid_number)
+			{
+				cout << "Phone number must contain only digits (0-9)." << endl;
+                continue;
+			}
+		}
 		for (size_t i = 0; i < result.length(); i++)
         {
 			c = static_cast<unsigned char>(result[i]);
@@ -85,7 +104,9 @@ void PhoneBook::addContact()
 
 	for(int i = 0; i < 5; i++)
 	{
-		if (!input_check(prompts[i], temp_data))
+		bool	check_digit = (i == 3);
+		
+		if (!input_check(prompts[i], temp_data, check_digit))
 			return;
 
 		switch (i)
@@ -208,7 +229,7 @@ int main(int argc, char **argv)
 		return (1);
 	while(true)
 	{
-		cout << "Please, enter what will you do as ADD, SEARCH or EXIT: "<< endl;
+		cout << "Please, enter what will you do as ADD, SEARCH or EXIT: ";
 		cin >> command;
 		if (cin.fail())
 		{
