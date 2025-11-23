@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 12:56:00 by gbodur            #+#    #+#             */
-/*   Updated: 2025/11/19 15:50:08 by gbodur           ###   ########.fr       */
+/*   Updated: 2025/11/23 18:45:10 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,34 @@ int Account::_totalAmount = 0;
 int Account::_totalNbDeposits = 0;
 int Account::_totalNbWithdrawals = 0;
 
+int	Account::getNbAccounts( void )
+{
+    return (_nbAccounts);
+}
+
+int Account::getTotalAmount( void )
+{
+    return (_totalAmount);
+}
+
+int Account::getNbDeposits( void )
+{
+    return (_totalNbDeposits);
+}
+
+int Account::getNbWithdrawals( void )
+{
+    return (_totalNbWithdrawals);
+}
+
 void	Account::displayAccountsInfos( void )
 {
-    //account: 8 yazan satırı
+    _displayTimestamp();
+    cout << "accounts:" << _nbAccounts << ";" << \
+        "total:" << _totalAmount << ";" << \
+        "deposits:" << _totalNbDeposits << ";" << \
+        "withdrawals:" << _totalNbWithdrawals << endl;
+    
 }
 void	Account::_displayTimestamp( void )
 {
@@ -54,7 +79,7 @@ void	Account::makeDeposit( int deposit )
     cout << "index:" << this->_accountIndex << ";" << \
         "p_amount:" << temp_amount << ";" << \
         "deposit:" << deposit << ";" << \
-        "amount:" << this->_amount << ";" << \ 
+        "amount:" << this->_amount << ";" << \
         "nb_deposits:" << this->_nbDeposits << endl;
     
 }
@@ -63,7 +88,7 @@ bool	Account::makeWithdrawal( int withdrawal )
 {
     if (this->_amount < withdrawal)
     {
-        displayAccountsInfos();
+        _displayTimestamp();
         cout << "index:" << this->_accountIndex << ";" << \
             "p_amount:" << this->_amount << ";" << \
             "withdrawal:" << "refused" << endl;
@@ -90,13 +115,16 @@ bool	Account::makeWithdrawal( int withdrawal )
 
 int		Account::checkAmount( void ) const
 {
-    
+    return (this->_amount);
 }
 
 void	Account::displayStatus( void ) const
 {
-    //her bir accountun bilgisi gelecek ama index bazında olacak.
-    //  cout << "index:" << this->_accountIndex << ";" << "amount:" << this->_amount << ";"<< "created" << endl;
+    _displayTimestamp();
+    cout << "index:" << this->_accountIndex << ";" << \
+        "amount:" << this->_amount << ";"<< \
+        "deposits:" << _nbDeposits << ";" << \
+        "withdrawals:" << _nbWithdrawals << ";" << endl;
 }
 
 Account::~Account( void )
