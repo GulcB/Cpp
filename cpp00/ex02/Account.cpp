@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 12:56:00 by gbodur            #+#    #+#             */
-/*   Updated: 2025/11/23 18:45:10 by gbodur           ###   ########.fr       */
+/*   Updated: 2025/11/24 16:22:13 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ void	Account::displayStatus( void ) const
     cout << "index:" << this->_accountIndex << ";" << \
         "amount:" << this->_amount << ";"<< \
         "deposits:" << _nbDeposits << ";" << \
-        "withdrawals:" << _nbWithdrawals << ";" << endl;
+        "withdrawals:" << _nbWithdrawals << endl;
 }
 
 Account::~Account( void )
