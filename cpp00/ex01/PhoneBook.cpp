@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 17:57:08 by gbodur            #+#    #+#             */
-/*   Updated: 2025/11/17 12:56:12 by gbodur           ###   ########.fr       */
+/*   Updated: 2025/11/29 14:21:41 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,24 +140,25 @@ void	PhoneBook::detail_search() const
 	
 	while (true)
 	{
-		cout << "Please, choose a specific line (1-" << this->_contact_count << "):" << endl;
+		cout << "Please, choose a specific line (1 - 8 but you have " << this->_contact_count << " contact):" << endl;
 		cin >> search_i;
 		if (cin.fail())
 		{
 			cout << "\nExit request has been detected. See you!." << endl;
 			cin.clear();
 			cin.ignore(10000, '\n');
-			continue;
+			return ;
 		}
-		else if (search_i < 1 || search_i > this->_contact_count)
+		else if (search_i <= 0 || search_i >= 9)
 		{
-			cout << "Your choose is empty or out of range. My range between 1 to 8." << endl;
+			cout << "Your choose is out of range. My range between 1 to 8." << endl;
 			continue;
 		}
 		else
 			break ;
 	}
 	const Contact& C = this->_contact[search_i - 1];
+
 	cout << endl;
     cout << "--- Contact Details ---" << endl;
     cout << "First Name:     " << C.getFirstName() << endl;
