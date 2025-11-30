@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 14:54:00 by gbodur            #+#    #+#             */
-/*   Updated: 2025/11/29 18:59:55 by gbodur           ###   ########.fr       */
+/*   Updated: 2025/11/30 16:44:28 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ class Zombie
 {
     private:
         string  name;
-        
     public:
         Zombie(string name);
         ~Zombie(void);

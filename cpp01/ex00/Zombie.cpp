@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 15:07:34 by gbodur            #+#    #+#             */
-/*   Updated: 2025/11/29 19:00:38 by gbodur           ###   ########.fr       */
+/*   Updated: 2025/11/30 16:18:42 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ using   std::endl;
 
 Zombie::Zombie(string name)
 {
-    this->name = ;
+    this->name = name;
 }
 Zombie::~Zombie(void)
 {
-    
+    cout << "Zombie " << this->name << " has gone" << endl;
 }
 void    Zombie::announce(void)
 {
-    cout << "BraiiiiiiinnnzzzZ..." << endl; 
+    cout << this->name << ": " "BraiiiiiiinnnzzzZ..." << endl; 
 }
 
