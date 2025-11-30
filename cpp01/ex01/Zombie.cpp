@@ -1,21 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   newZombie.cpp                                      :+:      :+:    :+:   */
+/*   Zombie.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/29 16:05:55 by gbodur            #+#    #+#             */
-/*   Updated: 2025/11/30 17:53:13 by gbodur           ###   ########.fr       */
+/*   Created: 2025/11/30 18:07:45 by gbodur            #+#    #+#             */
+/*   Updated: 2025/11/30 18:37:55 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-Zombie* newZombie(string name)
+using   std::cout;
+using   std::endl;
+
+void    Zombie::setZombieHorde(string name)
 {
-    Zombie *new_one;
-    
-    new_one = new Zombie(name);
-    return (new_one);
+    this->name = name;
+}
+
+Zombie::Zombie()
+{
+    cout << "Zombies birth" << endl;
+}
+Zombie::~Zombie(void)
+{
+    cout << "Zombie " << this->name << " has gone" << endl;
+}
+
+void    Zombie::announce(void)
+{
+    cout << this->name << ": " "We will get the earth" << endl; 
 }

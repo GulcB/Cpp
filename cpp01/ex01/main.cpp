@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/29 14:53:43 by gbodur            #+#    #+#             */
-/*   Updated: 2025/11/30 17:53:00 by gbodur           ###   ########.fr       */
+/*   Created: 2025/11/30 17:50:27 by gbodur            #+#    #+#             */
+/*   Updated: 2025/11/30 20:11:40 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,33 @@ using   std::cout;
 using   std::cin;
 using   std::getline;
 using   std::endl;
+using   std::stringstream;
 
 int main(int argc, char **argv)
 {
-    Zombie  *given_zombie;
+    Zombie  *horde;
     string  command;
+    int     zombie_count;
+    stringstream    ss;
 
-    (void)argv;
-    if (argc != 1)
+    zombie_count = 0;
+    if (argc != 2)
+    {
+        cout << "Usage: ./ZombieHorde <How many Zombie should be in horde>";
         return (1);
+    }    
+    ss << argv[1];
+    ss >> zombie_count;
+    if (ss.fail())
+    {
+        cout << "Invalid number!" << endl;
+        return (1);
+    }
+    if (zombie_count <= 0)
+    {
+        cout << "How can be possible negative number birth to be? No, it's not possible.";
+        return (1);
+    }
     while(true)
     {
         cout << "Please, enter the zombie name (or 'exit' to quit): ";
@@ -39,12 +57,14 @@ int main(int argc, char **argv)
             cout << "Goodbye, old friend ..." << endl;
             break;
         }
-        cout << "newZombie function's written" << endl;
-        given_zombie = newZombie(command);
-        given_zombie->announce();
-        delete given_zombie;
-        cout << "randomChump function's written" << endl;
-        randomChump(command);
+        cout << "Zombies have taken over the world" << endl;
+        horde = zombieHorde(zombie_count, command);
+        for (int i = 0; i < zombie_count; i++)
+        {
+            horde[i].announce();
+            
+        }
+        delete []horde;
     }
     return (0);
 }
