@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 18:07:45 by gbodur            #+#    #+#             */
-/*   Updated: 2025/11/30 18:37:55 by gbodur           ###   ########.fr       */
+/*   Updated: 2025/12/02 14:23:28 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void    Zombie::setZombieHorde(string name)
 
 Zombie::Zombie()
 {
-    cout << "Zombies birth" << endl;
 }
 Zombie::~Zombie(void)
 {
@@ -31,5 +30,5 @@ Zombie::~Zombie(void)
 
 void    Zombie::announce(void)
 {
-    cout << this->name << ": " "We will get the earth" << endl; 
+    cout << this->name << ": " "BraiiiiiiinnnzzzZ..." << endl; 
 }

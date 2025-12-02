@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 17:50:27 by gbodur            #+#    #+#             */
-/*   Updated: 2025/11/30 20:11:40 by gbodur           ###   ########.fr       */
+/*   Updated: 2025/12/02 14:10:56 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int main(int argc, char **argv)
     zombie_count = 0;
     if (argc != 2)
     {
-        cout << "Usage: ./ZombieHorde <How many Zombie should be in horde>";
+        cout << "Usage: ./ZombieHorde <How many Zombie should be in horde>\n";
         return (1);
     }    
     ss << argv[1];
@@ -61,8 +61,7 @@ int main(int argc, char **argv)
         horde = zombieHorde(zombie_count, command);
         for (int i = 0; i < zombie_count; i++)
         {
-            horde[i].announce();
-            
+            horde[i].announce(); 
         }
         delete []horde;
     }
