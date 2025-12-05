@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 14:53:43 by gbodur            #+#    #+#             */
-/*   Updated: 2025/11/30 17:53:00 by gbodur           ###   ########.fr       */
+/*   Updated: 2025/12/05 15:49:49 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 using   std::cout;
 using   std::cin;
+using   std::cerr;
 using   std::getline;
 using   std::endl;
 
@@ -31,7 +32,7 @@ int main(int argc, char **argv)
         getline(cin, command);
         if (cin.fail())
 		{
-			cout << "See you another world, goodbye! " << endl;
+			cerr << "See you another world, goodbye! " << endl;
 			break;
 		}
         if (command == "exit")

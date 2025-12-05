@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 17:50:27 by gbodur            #+#    #+#             */
-/*   Updated: 2025/12/02 14:10:56 by gbodur           ###   ########.fr       */
+/*   Updated: 2025/12/05 15:49:18 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 using   std::cout;
 using   std::cin;
+using   std::cerr;
 using   std::getline;
 using   std::endl;
 using   std::stringstream;
@@ -28,19 +29,19 @@ int main(int argc, char **argv)
     zombie_count = 0;
     if (argc != 2)
     {
-        cout << "Usage: ./ZombieHorde <How many Zombie should be in horde>\n";
+        cerr << "Usage: ./ZombieHorde <How many Zombie should be in horde>\n";
         return (1);
     }    
     ss << argv[1];
     ss >> zombie_count;
     if (ss.fail())
     {
-        cout << "Invalid number!" << endl;
+        cerr << "Invalid number!" << endl;
         return (1);
     }
     if (zombie_count <= 0)
     {
-        cout << "How can be possible negative number birth to be? No, it's not possible.";
+        cerr << "How can be possible negative number birth to be? No, it's not possible.";
         return (1);
     }
     while(true)
@@ -49,7 +50,7 @@ int main(int argc, char **argv)
         getline(cin, command);
         if (cin.fail())
 		{
-			cout << "See you another world, goodbye! " << endl;
+			cerr << "See you another world, goodbye! " << endl;
 			break;
 		}
         if (command == "exit")
