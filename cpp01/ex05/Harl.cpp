@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 17:42:51 by gbodur            #+#    #+#             */
-/*   Updated: 2025/12/05 20:04:41 by gbodur           ###   ########.fr       */
+/*   Updated: 2025/12/20 12:46:46 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,31 +24,31 @@ Harl::~Harl()
 }
 void    Harl::debug(void)
 {
-    cout << "DEBUG: " << \ 
-        "I love having extra bacon for my" << \ 
-        "7XL-double-cheese-triple-pickle-specialketchup burger. " << \ 
-        "I really do!" << endl;
+    cout << "DEBUG:\n"
+        << "I love having extra bacon for my"
+        << "7XL-double-cheese-triple-pickle-special-ketchup burger.\n"
+        << "I really do!" << endl;
 }
 
 void    Harl::info(void)
 {
-    cout << "INFO: " << \ 
-        "I cannot believe adding extra bacon costs more money. " << \ 
-        "You didn’t put enough bacon in my burger! " << \ 
-        "If you did, I wouldn’t be asking for more!" << endl;
+    cout << "INFO:\n"
+        << "I cannot believe adding extra bacon costs more money.\n"
+        << "You didn’t put enough bacon in my burger!\n"
+        << "If you did, I wouldn’t be asking for more!" << endl;
 }
 
 void    Harl::warning(void)
 {
-    cout << "WARNING: " << \ 
-        "I think I deserve to have some extra bacon for free. " << \ 
-        "I’ve been coming foryears, whereas you started working here just last month." << endl;
+    cout << "WARNING:\n"
+        << "I think I deserve to have some extra bacon for free.\n"
+        << "I’ve been coming for years, whereas you started working here just last month." << endl;
 }
 
 void    Harl::error(void)
 {
-    cout << "ERROR: " << \ 
-        "This is unacceptable! I want to speak to the manager now." << endl;
+    cout << "ERROR:\n"
+        << "This is unacceptable! I want to speak to the manager now." << endl;
 }
 
 void    Harl::complain(string level)
