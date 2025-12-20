@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 17:50:27 by gbodur            #+#    #+#             */
-/*   Updated: 2025/12/05 15:49:18 by gbodur           ###   ########.fr       */
+/*   Updated: 2025/12/20 13:05:04 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int main(int argc, char **argv)
     }    
     ss << argv[1];
     ss >> zombie_count;
-    if (ss.fail())
+    if (ss.fail() || !ss.eof())
     {
         cerr << "Invalid number!" << endl;
         return (1);
