@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 15:48:28 by gbodur            #+#    #+#             */
-/*   Updated: 2026/01/16 16:23:51 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/01/17 16:56:20 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 #include <string>
 #include <iostream>
+#include <cstdlib>
+#include <cstring>
 
 using std::string;
 
@@ -22,11 +24,12 @@ class ClapTrap
 {
 	private:
 		string	_name;
-		unsigned int _hitP;
-		unsigned int _energyP;
+		unsigned int _hitPoints;
+		unsigned int _energyPoints;
 		unsigned int _attackDamage;
 	public:
 		ClapTrap();
+		ClapTrap(const string &name);
 		~ClapTrap();
 		ClapTrap(const ClapTrap &clapTrap);
 		ClapTrap &operator=(const ClapTrap &clapTrap);
