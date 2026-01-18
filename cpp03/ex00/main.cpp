@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 16:16:55 by gbodur            #+#    #+#             */
-/*   Updated: 2026/01/18 15:26:55 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/01/18 20:42:18 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ using std::cout;
 using std::cin;
 using std::endl;
 using std::atoi;
-using std::strcmp;
 
 int main(int argc, char **argv)
 {
