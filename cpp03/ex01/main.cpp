@@ -6,17 +6,16 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 20:36:38 by gbodur            #+#    #+#             */
-/*   Updated: 2026/01/18 15:50:40 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/01/18 20:43:16 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 using std::cout;
 using std::cin;
 using std::endl;
 using std::atoi;
-using std::strcmp;
 
 int main(int argc, char **argv)
 {
@@ -40,7 +39,8 @@ int main(int argc, char **argv)
 		cout << "See you another world, goodbye! " << endl;
 		return (1);
 	}
-	ClapTrap clapFirst(soldier_name);
+	ScavTrap scavFirst(soldier_name);
+	scavFirst.guardGate();
 	cout << "You should give a enemy name" << endl;
 	cin >> enemy_name;
 	if (cin.fail())
@@ -48,7 +48,8 @@ int main(int argc, char **argv)
 		cout << "See you another world, goodbye! " << endl;
 		return (1);
 	}
-	ClapTrap clapSecond(enemy_name);
+	ScavTrap scavSecond(enemy_name);
+	scavSecond.guardGate();
 	amountDamage = atoi(argv[1]);
 	amountRepair = atoi(argv[2]);
 	if (amountDamage < 0)
@@ -61,12 +62,12 @@ int main(int argc, char **argv)
 		cout << "Amount repair must be positive number" << endl;
 		return (1);
 	}
-	clapFirst.attack(enemy_name);
-	clapSecond.takeDamage(amountDamage);
-	clapSecond.beRepaired(amountRepair);
+	scavFirst.attack(enemy_name);
+	scavSecond.takeDamage(amountDamage);
+	scavSecond.beRepaired(amountRepair);
 
-	clapSecond.attack(soldier_name);
-	clapFirst.takeDamage(amountDamage);
-	clapFirst.beRepaired(amountRepair);
+	scavSecond.attack(soldier_name);
+	scavFirst.takeDamage(amountDamage);
+	scavFirst.beRepaired(amountRepair);
 	return (0);
 }
