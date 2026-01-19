@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 20:36:43 by gbodur            #+#    #+#             */
-/*   Updated: 2026/01/18 20:38:32 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/01/19 16:38:08 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ ScavTrap &ScavTrap::operator=(const ScavTrap &scavTrap)
 		this->_hitPoints = scavTrap._hitPoints;
 	}
 	return (*this);
-
 }
 
 ScavTrap::~ScavTrap()

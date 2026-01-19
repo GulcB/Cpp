@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 20:36:30 by gbodur            #+#    #+#             */
-/*   Updated: 2026/01/18 19:48:46 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/01/19 16:40:46 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 using std::cout;
 using std::endl;
 
-ClapTrap::ClapTrap() : _name(""), _hitPoints(10), _energyPoints(10), _attackDamage(0)
+ClapTrap::ClapTrap() : _name(""), _hitPoints(100), _energyPoints(50), _attackDamage(20)
 {
 	cout << "ClapTrap default constructor called" << endl;
 }
 
-ClapTrap::ClapTrap(const string &name) : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0)
+ClapTrap::ClapTrap(const string &name) : _name(name), _hitPoints(100), _energyPoints(50), _attackDamage(20)
 {
 	cout << "ClapTrap " << this->_name << " constructor called" << endl;
 }
