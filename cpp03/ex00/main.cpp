@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 16:16:55 by gbodur            #+#    #+#             */
-/*   Updated: 2026/01/18 20:42:18 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/01/19 22:02:08 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int main(int argc, char **argv)
 		cout << "Amount repair must be positive number" << endl;
 		return (1);
 	}
+	cout << "--- BATTLE START ---" << endl;
 	clapFirst.attack(enemy_name);
 	clapSecond.takeDamage(amountDamage);
 	clapSecond.beRepaired(amountRepair);
@@ -67,5 +68,6 @@ int main(int argc, char **argv)
 	clapSecond.attack(soldier_name);
 	clapFirst.takeDamage(amountDamage);
 	clapFirst.beRepaired(amountRepair);
+	cout << "--- BATTLE END ---" << endl;
 	return (0);
 }

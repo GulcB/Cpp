@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 20:36:38 by gbodur            #+#    #+#             */
-/*   Updated: 2026/01/18 20:43:16 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/01/19 22:01:53 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ int main(int argc, char **argv)
 		return (1);
 	}
 	ScavTrap scavFirst(soldier_name);
+	cout << "\n--- Special Abilities Test for " << enemy_name << " ---" << endl;
 	scavFirst.guardGate();
+	cout << "-------------------------------------------\n" << endl;
 	cout << "You should give a enemy name" << endl;
 	cin >> enemy_name;
 	if (cin.fail())
@@ -49,7 +51,9 @@ int main(int argc, char **argv)
 		return (1);
 	}
 	ScavTrap scavSecond(enemy_name);
+	cout << "\n--- Special Abilities Test for " << enemy_name << " ---" << endl;
 	scavSecond.guardGate();
+	cout << "-------------------------------------------\n" << endl;
 	amountDamage = atoi(argv[1]);
 	amountRepair = atoi(argv[2]);
 	if (amountDamage < 0)
@@ -62,6 +66,7 @@ int main(int argc, char **argv)
 		cout << "Amount repair must be positive number" << endl;
 		return (1);
 	}
+	cout << "--- BATTLE START ---" << endl;
 	scavFirst.attack(enemy_name);
 	scavSecond.takeDamage(amountDamage);
 	scavSecond.beRepaired(amountRepair);
@@ -69,5 +74,6 @@ int main(int argc, char **argv)
 	scavSecond.attack(soldier_name);
 	scavFirst.takeDamage(amountDamage);
 	scavFirst.beRepaired(amountRepair);
+	cout << "--- BATTLE END ---" << endl;
 	return (0);
 }

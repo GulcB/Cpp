@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 20:36:58 by gbodur            #+#    #+#             */
-/*   Updated: 2026/01/19 16:52:08 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/01/19 22:00:34 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ int main(int argc, char **argv)
 		return (1);
 	}
 	FragTrap fragFirst(soldier_name);
+	cout << "\n--- Special Abilities Test for " << enemy_name << " ---" << endl;
 	fragFirst.highFivesGuys();
+	cout << "-------------------------------------------\n" << endl;
 	cout << "You should give a enemy name" << endl;
 	cin >> enemy_name;
 	if (cin.fail())
@@ -49,7 +51,9 @@ int main(int argc, char **argv)
 		return (1);
 	}
 	FragTrap fragSecond(enemy_name);
+	cout << "\n--- Special Abilities Test for " << enemy_name << " ---" << endl;
 	fragSecond.highFivesGuys();
+	cout << "-------------------------------------------\n" << endl;
 	amountDamage = atoi(argv[1]);
 	amountRepair = atoi(argv[2]);
 	if (amountDamage < 0)
@@ -62,6 +66,7 @@ int main(int argc, char **argv)
 		cout << "Amount repair must be positive number" << endl;
 		return (1);
 	}
+	cout << "--- BATTLE START ---" << endl;
 	fragFirst.attack(enemy_name);
 	fragSecond.takeDamage(amountDamage);
 	fragSecond.beRepaired(amountRepair);
@@ -69,5 +74,6 @@ int main(int argc, char **argv)
 	fragSecond.attack(soldier_name);
 	fragFirst.takeDamage(amountDamage);
 	fragFirst.beRepaired(amountRepair);
+	cout << "--- BATTLE END ---" << endl;
 	return (0);
 }
