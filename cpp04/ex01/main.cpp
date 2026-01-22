@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 12:23:09 by gbodur            #+#    #+#             */
-/*   Updated: 2026/01/22 12:25:15 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/01/22 15:39:00 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int main()
 		else
 			animals[i] = new Cat();
 	}
+	cout << "--- DELETE ARRAY ---" << endl;
 	for (int i = 0; i < ANIMAL_COUNT; i++)
 	{
 		delete animals[i];
