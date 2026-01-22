@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 16:16:55 by gbodur            #+#    #+#             */
-/*   Updated: 2026/01/22 17:18:15 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/01/23 00:01:53 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int main(int argc, char **argv)
 		cout << "See you another world, goodbye! " << endl;
 		return (1);
 	}
-	ClapTrap	clapFirst(soldier_name);
+	ClapTrap clapFirst(soldier_name);
 	cout << "You should give a enemy name" << endl;
 	cin >> enemy_name;
 	if (cin.fail())
@@ -45,21 +45,21 @@ int main(int argc, char **argv)
 		cout << "See you another world, goodbye! " << endl;
 		return (1);
 	}
-	ClapTrap	clapSecond(enemy_name);
+	ClapTrap clapSecond(enemy_name);
 	amountRepair = atoi(argv[1]);
 	if (amountRepair < 0)
 	{
 		cout << "Amount repair must be positive number" << endl;
 		return (1);
 	}
-	cout << "--- BATTLE START ---" << endl;
+	cout << "----------------------------- BATTLE START ------------------------------" << endl;
 	clapFirst.attack(enemy_name);
 	clapSecond.takeDamage(clapFirst.getAttackDamage());
 	clapSecond.beRepaired(amountRepair);
-
+	cout << endl;
 	clapSecond.attack(soldier_name);
 	clapFirst.takeDamage(clapSecond.getAttackDamage());
 	clapFirst.beRepaired(amountRepair);
-	cout << "--- BATTLE END ---" << endl;
+	cout << "------------------------------- BATTLE END -------------------------------" << endl;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 15:48:25 by gbodur            #+#    #+#             */
-/*   Updated: 2026/01/22 17:17:09 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/01/23 00:09:13 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &clapTrap)
 
 void ClapTrap::attack(const string &target)
 {
-	cout << "Energy point for " << this->_name << " : " << this->_energyPoints << endl;
+	cout << "> Energy point for " << this->_name << ": " << this->_energyPoints
+		<< " | Hit point for " << this->_name << ": " << this->_hitPoints << endl;
 	if (this->_hitPoints == 0)
 	{
 		cout << "ClapTrap " << this->_name << " can't attack, no hit points left!" << endl;
@@ -69,9 +70,10 @@ void ClapTrap::attack(const string &target)
 	{
 		cout << "ClapTrap " << this->_name
 			<< " attacks " << target << ", causing "
-			<< this->_attackDamage << " points of damage. ";
+			<< this->_attackDamage << " points of damage. " << endl;
 		this->_energyPoints--;
-		cout << "Energy point for " << this->_name << " : " << this->_energyPoints << endl;
+		cout << "> Energy point for " << this->_name << ": " << this->_energyPoints << endl;
+		cout << endl;
 	}
 	else
         cout << "ClapTrap has gone." << endl;
@@ -79,13 +81,15 @@ void ClapTrap::attack(const string &target)
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
-	cout << "Energy point for " << this->_name << " : " << this->_energyPoints << endl;
-	cout << "ClapTrap " << this->_name
-		<< " takes " << amount << " points of damage!" << endl;
+	cout << "> Energy point for " << this->_name << ": " << this->_energyPoints
+		<< " | Hit point for " << this->_name << ": " << this->_hitPoints << endl;
 	if (amount >= this->_hitPoints)
 		this->_hitPoints = 0;
 	else
 		this->_hitPoints -= amount;
+	cout << "ClapTrap " << this->_name
+		<< " takes " << amount << " points of damage!" << " Hit point for " << this->_name
+		<< ": " << this->_hitPoints << endl;
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
@@ -101,10 +105,11 @@ void ClapTrap::beRepaired(unsigned int amount)
 		return ;
 	}
 	cout << "ClapTrap " << this->_name
-		<< " repairs itself, recovering " << amount << " hit points! ";
+		<< " repairs itself, recovering " << amount << " hit points! " << endl;
 	this->_energyPoints--;
-	cout << " Energy point for " << this->_name << " : " << this->_energyPoints << endl;
+	cout << "> Energy point for " << this->_name << ": " << this->_energyPoints << " | ";
 	this->_hitPoints += amount;
+	cout << "Hit point for " << this->_name << ": " << this->_hitPoints << endl;
 }
 
 unsigned int ClapTrap::getAttackDamage() const
