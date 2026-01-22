@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 20:36:45 by gbodur            #+#    #+#             */
-/*   Updated: 2026/01/18 20:22:57 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/01/22 17:39:52 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ class ScavTrap : public ClapTrap
 		~ScavTrap();
 		void attack(const string &target);
 		void guardGate();
-		
 };
 
 #endif

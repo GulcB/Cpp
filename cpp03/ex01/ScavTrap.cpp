@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 20:36:43 by gbodur            #+#    #+#             */
-/*   Updated: 2026/01/19 16:38:08 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/01/22 17:44:13 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,16 @@ using std::endl;
 
 ScavTrap::ScavTrap() : ClapTrap()
 {
-	this->_name = "";
-	this->_hitPoints = 100;
-	this->_energyPoints = 50;
-	this->_attackDamage = 20;
 	cout << "ScavTrap default constructor called." << endl;
 }
 
 ScavTrap::ScavTrap(const string &name) : ClapTrap(name)
 {
-	this->_hitPoints = 100;
-	this->_energyPoints = 50;
-	this->_attackDamage = 20;
 	cout << "ScavTrap " << this->_name << " constructor called." << endl;
 }
 
 ScavTrap::ScavTrap(const ScavTrap &scavTrap) : ClapTrap(scavTrap)
 {
-	this->_name = scavTrap._name;
-	this->_hitPoints = scavTrap._hitPoints;
-	this->_energyPoints = scavTrap._energyPoints;
-	this->_attackDamage = scavTrap._attackDamage;
 	cout << "ScavTrap " << this->_name << " copy constructor called" << endl;
 }
 
