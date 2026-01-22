@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 20:36:58 by gbodur            #+#    #+#             */
-/*   Updated: 2026/01/19 22:00:34 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/01/22 21:17:08 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,15 @@ using std::atoi;
 
 int main(int argc, char **argv)
 {
-	int			amountDamage;
 	int			amountRepair;
 	string		soldier_name;
 	string		enemy_name;
 
-	amountDamage = 0;
 	amountRepair = 0;
-	if (argc != 3)
+	if (argc != 2)
 	{
-		cout << "Usage of amount: <amount of takeDamage> <amount of beRepaired>" << endl;
-		cout << "Example: ./clapTrap 5 3" << endl;
+		cout << "Usage of amount: <amount of beRepaired>" << endl;
+		cout << "Example: ./fragTrap 5" << endl;
 		return (1);
 	}
 	cout << "You should give a soldier name" << endl;
@@ -40,9 +38,9 @@ int main(int argc, char **argv)
 		return (1);
 	}
 	FragTrap fragFirst(soldier_name);
-	cout << "\n--- Special Abilities Test for " << enemy_name << " ---" << endl;
+	cout << "\n------ Special Abilities Test for " << soldier_name << " -----" << endl;
 	fragFirst.highFivesGuys();
-	cout << "-------------------------------------------\n" << endl;
+	cout << "--------------------------------------------\n" << endl;
 	cout << "You should give a enemy name" << endl;
 	cin >> enemy_name;
 	if (cin.fail())
@@ -51,29 +49,24 @@ int main(int argc, char **argv)
 		return (1);
 	}
 	FragTrap fragSecond(enemy_name);
-	cout << "\n--- Special Abilities Test for " << enemy_name << " ---" << endl;
+	cout << "\n------ Special Abilities Test for " << enemy_name << " -----" << endl;
 	fragSecond.highFivesGuys();
 	cout << "-------------------------------------------\n" << endl;
-	amountDamage = atoi(argv[1]);
-	amountRepair = atoi(argv[2]);
-	if (amountDamage < 0)
-	{
-		cout << "Amount damage must be positive number" << endl;
-		return (1);
-	}
+	amountRepair = atoi(argv[1]);
 	if (amountRepair < 0)
 	{
 		cout << "Amount repair must be positive number" << endl;
 		return (1);
 	}
-	cout << "--- BATTLE START ---" << endl;
+	cout << "----------------------------- BATTLE START ------------------------------" << endl;
 	fragFirst.attack(enemy_name);
-	fragSecond.takeDamage(amountDamage);
+	fragSecond.takeDamage(fragFirst.getAttackDamage());
 	fragSecond.beRepaired(amountRepair);
-
+	cout << endl;
 	fragSecond.attack(soldier_name);
-	fragFirst.takeDamage(amountDamage);
+	fragFirst.takeDamage(fragSecond.getAttackDamage());
 	fragFirst.beRepaired(amountRepair);
-	cout << "--- BATTLE END ---" << endl;
+	cout << "------------------------------- BATTLE END -------------------------------" << endl;
+	cout << endl;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 20:37:03 by gbodur            #+#    #+#             */
-/*   Updated: 2026/01/19 15:33:34 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/01/22 20:34:36 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,16 @@ using std::endl;
 
 ScavTrap::ScavTrap() : ClapTrap()
 {
-	this->_name = "";
-	this->_hitPoints = 100;
-	this->_energyPoints = 50;
-	this->_attackDamage = 20;
 	cout << "ScavTrap default constructor called." << endl;
 }
 
 ScavTrap::ScavTrap(const string &name) : ClapTrap(name)
 {
-	this->_hitPoints = 100;
-	this->_energyPoints = 50;
-	this->_attackDamage = 20;
 	cout << "ScavTrap " << this->_name << " constructor called." << endl;
 }
 
 ScavTrap::ScavTrap(const ScavTrap &scavTrap) : ClapTrap(scavTrap)
 {
-	this->_name = scavTrap._name;
-	this->_hitPoints = scavTrap._hitPoints;
-	this->_energyPoints = scavTrap._energyPoints;
-	this->_attackDamage = scavTrap._attackDamage;
 	cout << "ScavTrap " << this->_name << " copy constructor called" << endl;
 }
 
@@ -52,7 +41,6 @@ ScavTrap &ScavTrap::operator=(const ScavTrap &scavTrap)
 		this->_hitPoints = scavTrap._hitPoints;
 	}
 	return (*this);
-
 }
 
 ScavTrap::~ScavTrap()
@@ -62,7 +50,8 @@ ScavTrap::~ScavTrap()
 
 void ScavTrap::attack(const string &target)
 {
-	cout << "Energy point for " << this->_name << " : " << this->_energyPoints << endl;
+	cout << "> Energy point for " << this->_name << ": " << this->_energyPoints
+		<< " | Hit point for " << this->_name << ": " << this->_hitPoints << endl;
 	if (this->_hitPoints == 0)
 	{
 		cout << "ScavTrap " << this->_name << " can't attack, no hit points left!" << endl;
@@ -79,7 +68,7 @@ void ScavTrap::attack(const string &target)
 			<< " attacks " << target << ", causing "
 			<< this->_attackDamage << " points of damage. ";
 		this->_energyPoints--;
-		cout << "Energy point for " << this->_name << " : " << this->_energyPoints << endl;
+		cout << "Energy point for " << this->_name << ": " << this->_energyPoints << endl;
 	}
 	else
         cout << "ScavTrap has gone." << endl;
