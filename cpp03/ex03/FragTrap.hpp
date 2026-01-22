@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 20:37:29 by gbodur            #+#    #+#             */
-/*   Updated: 2026/01/19 18:23:31 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/01/22 20:00:47 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define FRAGTRAP_HPP
 
 #include "ClapTrap.hpp"
-#include "ScavTrap.hpp"
 
 class FragTrap : virtual public ClapTrap
 {
@@ -25,6 +24,9 @@ class FragTrap : virtual public ClapTrap
 		FragTrap &operator=(const FragTrap &fragTrap);
 		~FragTrap();
 		void highFivesGuys(void);
-		
+	protected:
+		const static unsigned int _hitPoint = 100;
+		const static unsigned int _energyPoint = 100;
+		const static unsigned int _attackDamega = 30;		
 };
 #endif

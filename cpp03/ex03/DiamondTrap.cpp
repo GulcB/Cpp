@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 20:37:22 by gbodur            #+#    #+#             */
-/*   Updated: 2026/01/19 21:51:31 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/01/22 20:01:56 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ using std::endl;
 DiamondTrap::DiamondTrap() : ClapTrap("default_clap_name"), ScavTrap(), FragTrap()
 {
     this->_name = "";
-    this->_hitPoints = FragTrap::_hitPoints;
-    this->_energyPoints = ScavTrap::_energyPoints;
-    this->_attackDamage = FragTrap::_attackDamage;
+    this->_hitPoints = FragTrap::_hitPoint;
+    this->_energyPoints = ScavTrap::_energyPoint;
+    this->_attackDamage = FragTrap::_attackDamega;
     
     cout << "DiamondTrap default constructor called." << endl;
 }
@@ -30,9 +30,9 @@ DiamondTrap::DiamondTrap(const string &name) : ClapTrap(name + "_clap_name"),
       FragTrap(name)
 {
     this->_name = name;
-    this->_hitPoints = FragTrap::_hitPoints;
-    this->_energyPoints = ScavTrap::_energyPoints;
-    this->_attackDamage = FragTrap::_attackDamage;
+    this->_hitPoints = FragTrap::_hitPoint;
+    this->_energyPoints = ScavTrap::_energyPoint;
+    this->_attackDamage = FragTrap::_attackDamega;
     
     cout << "DiamondTrap " << this->_name << " constructor called." << endl;
 }
@@ -77,3 +77,4 @@ void DiamondTrap::whoAmI()
     cout << "I am DiamondTrap " << this->_name 
          << " and my ClapTrap name is " << ClapTrap::_name << endl;
 }
+

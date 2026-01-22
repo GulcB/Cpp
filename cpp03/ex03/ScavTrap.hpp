@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 20:37:36 by gbodur            #+#    #+#             */
-/*   Updated: 2026/01/19 18:23:25 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/01/22 20:00:53 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ class ScavTrap : virtual public ClapTrap
 		~ScavTrap();
 		void attack(const string &target);
 		void guardGate();
-		
+	protected:
+		const static unsigned int _hitPoint = 100;
+		const static unsigned int _energyPoint = 50;
+		const static unsigned int _attackDamega = 20;
 };
 
 #endif
