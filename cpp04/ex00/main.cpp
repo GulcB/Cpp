@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 12:23:09 by gbodur            #+#    #+#             */
-/*   Updated: 2026/01/20 16:33:24 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/01/22 11:25:04 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,19 @@
 int main()
 {
 	cout << "--- SUBJECT TEST ---" << endl;
-	const Animal* meta = new Animal();
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
+	const Animal *animal = new Animal();
+	const Animal *i = new Cat();
+	const Animal *j = new Dog();
 	
-	cout << j->getType() << " " << endl;
 	cout << i->getType() << " " << endl;
+	cout << j->getType() << " " << endl;
 
 	cout << "Cat Sound: ";
     i->makeSound(); 
     cout << "Dog Sound: ";
     j->makeSound();
     cout << "Animal Sound: ";
-    meta->makeSound();
+    animal->makeSound();
 
     cout << endl << "--- WRONG ANIMAL TEST ---" << endl;
     const WrongAnimal* wrongMeta = new WrongAnimal();
@@ -45,7 +45,7 @@ int main()
     cout << "WrongAnimal Sound: ";
     wrongMeta->makeSound();
 
-    delete meta;
+    delete animal;
     delete j;
     delete i;
     delete wrongMeta;
