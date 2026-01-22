@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 15:48:28 by gbodur            #+#    #+#             */
-/*   Updated: 2026/01/17 16:56:20 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/01/22 17:16:19 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ class ClapTrap
 		void attack(const string& target);
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);
+		unsigned int getAttackDamage() const;
 };
 
 #endif

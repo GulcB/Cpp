@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 16:16:55 by gbodur            #+#    #+#             */
-/*   Updated: 2026/01/19 22:02:08 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/01/22 17:18:15 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,15 @@ using std::atoi;
 
 int main(int argc, char **argv)
 {
-	int			amountDamage;
 	int			amountRepair;
 	string		soldier_name;
 	string		enemy_name;
 
-	amountDamage = 0;
 	amountRepair = 0;
-	if (argc != 3)
+	if (argc != 2)
 	{
-		cout << "Usage of amount: <amount of takeDamage> <amount of beRepaired>" << endl;
-		cout << "Example: ./clapTrap 5 3" << endl;
+		cout << "Usage of amount: <amount of beRepaired>" << endl;
+		cout << "Example: ./clapTrap 5 " << endl;
 		return (1);
 	}
 	cout << "You should give a soldier name" << endl;
@@ -48,13 +46,7 @@ int main(int argc, char **argv)
 		return (1);
 	}
 	ClapTrap	clapSecond(enemy_name);
-	amountDamage = atoi(argv[1]);
-	amountRepair = atoi(argv[2]);
-	if (amountDamage < 0)
-	{
-		cout << "Amount damage must be positive number" << endl;
-		return (1);
-	}
+	amountRepair = atoi(argv[1]);
 	if (amountRepair < 0)
 	{
 		cout << "Amount repair must be positive number" << endl;
@@ -62,11 +54,11 @@ int main(int argc, char **argv)
 	}
 	cout << "--- BATTLE START ---" << endl;
 	clapFirst.attack(enemy_name);
-	clapSecond.takeDamage(amountDamage);
+	clapSecond.takeDamage(clapFirst.getAttackDamage());
 	clapSecond.beRepaired(amountRepair);
 
 	clapSecond.attack(soldier_name);
-	clapFirst.takeDamage(amountDamage);
+	clapFirst.takeDamage(clapSecond.getAttackDamage());
 	clapFirst.beRepaired(amountRepair);
 	cout << "--- BATTLE END ---" << endl;
 	return (0);

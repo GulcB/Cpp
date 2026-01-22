@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 15:48:25 by gbodur            #+#    #+#             */
-/*   Updated: 2026/01/18 15:46:36 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/01/22 17:17:09 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,4 +105,9 @@ void ClapTrap::beRepaired(unsigned int amount)
 	this->_energyPoints--;
 	cout << " Energy point for " << this->_name << " : " << this->_energyPoints << endl;
 	this->_hitPoints += amount;
+}
+
+unsigned int ClapTrap::getAttackDamage() const
+{
+	return(this->_attackDamage);
 }
