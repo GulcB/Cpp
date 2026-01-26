@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 13:29:21 by gbodur            #+#    #+#             */
-/*   Updated: 2026/01/26 12:28:02 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/01/26 14:48:24 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ Cat::Cat()
 
 Cat::Cat(const Cat &brain) : Animal(brain)
 {
-	this->brain = new Brain(*brain.brain);
 	cout << "Cat copy constructor called" << endl;
+	this->brain = new Brain(*brain.brain);
 }
 
 Cat &Cat::operator=(const Cat &brain)
