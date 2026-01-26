@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 11:46:40 by gbodur            #+#    #+#             */
-/*   Updated: 2026/01/22 11:57:11 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/01/26 14:31:52 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ using std::endl;
 
 Brain::Brain()
 {
-	cout << "Barin default constructor called" << endl;
+	cout << "~ " << "Brain default constructor called" << endl;
 }
 
 Brain::Brain(const Brain &brain)
@@ -28,16 +28,17 @@ Brain::Brain(const Brain &brain)
 
 Brain &Brain::operator=(const Brain &brain)
 {
-	cout << "Copy assignment operator called" << endl;
 	if (this != &brain)
 	{
 		for (int i = 0; i < 100; i++)
 			this->ideas[i] = brain.ideas[i];
 	}
+	cout << "Brain copy assignment operator called" << endl;
+	cout << endl;
 	return (*this);
 }
 
 Brain::~Brain()
 {
-	cout << "Brain destructor called" << endl;
+	cout << "~ " << "Brain destructor called" << endl;
 }

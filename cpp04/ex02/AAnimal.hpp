@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 15:20:30 by gbodur            #+#    #+#             */
-/*   Updated: 2026/01/22 15:21:14 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/01/26 14:31:17 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 
 #include <string>
 #include <iostream>
+#include <sstream>
+#include <climits>
+#include "Cat.hpp"
+#include "Dog.hpp"
 
 using std::string;
 using std::cout;
