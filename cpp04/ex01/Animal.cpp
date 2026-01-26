@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 12:22:21 by gbodur            #+#    #+#             */
-/*   Updated: 2026/01/21 16:36:38 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/01/26 12:27:55 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 Animal::Animal()
 {
 	this->type = "Animal";
-	cout << "Animal constructor called." << endl;
+	cout << "> " << "Animal constructor called." << endl;
 }
 
 Animal::Animal(const Animal &animal)
@@ -34,7 +34,8 @@ Animal &Animal::operator=(const Animal &animal)
 
 Animal::~Animal()
 {
-	cout << "Animal destructor called" << endl;
+	cout << "> " << "Animal destructor called" << endl;
+	cout << endl;
 }
 
 void Animal::makeSound() const
