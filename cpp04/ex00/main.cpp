@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 12:23:09 by gbodur            #+#    #+#             */
-/*   Updated: 2026/01/22 15:23:42 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/01/26 12:08:01 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,33 +23,27 @@ int main()
 	const Animal *cat = new Cat();
 	const Animal *dog = new Dog();
 	
-	cout << cat->getType() << " " << endl;
-	cout << dog->getType() << " " << endl;
-
-	cout << "Cat Sound: ";
+	cout << cat->getType() << " " << "Sound: ";
     cat->makeSound(); 
-    cout << "Dog Sound: ";
+	cout << dog->getType() << " " << "Sound: ";
     dog->makeSound();
-    cout << "Animal Sound: ";
+	cout << animal->getType() << " " << "Sound: ";
     animal->makeSound();
 
     cout << endl << "--- WRONG ANIMAL TEST ---" << endl;
-    const WrongAnimal* wrongMeta = new WrongAnimal();
+    const WrongAnimal* wrongAnimal = new WrongAnimal();
     const WrongAnimal* wrongCat = new WrongCat();
 	
-    cout << "wrongCat type: " << wrongCat->getType() << endl;
-
-    cout << "WrongCat Sound: ";
+    cout << wrongCat->getType() << " " << "Sound: ";
     wrongCat->makeSound(); 
-
-    cout << "WrongAnimal Sound: ";
-    wrongMeta->makeSound();
-
+    cout << wrongAnimal->getType() << " " << "Sound: ";
+    wrongAnimal->makeSound();
+	cout << "-------------------------------------------------------------" << endl;
     delete animal;
     delete dog;
     delete cat;
-    delete wrongMeta;
+    delete wrongAnimal;
     delete wrongCat;
 
-    return 0;
+    return (0);
 }
