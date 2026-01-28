@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 15:17:52 by gbodur            #+#    #+#             */
-/*   Updated: 2026/01/26 14:31:02 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/01/28 19:05:33 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,5 @@ AAnimal::~AAnimal()
 
 string AAnimal::getType() const
 {
-	return(this->type);
+	return (this->type);
 }

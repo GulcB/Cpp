@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 12:22:21 by gbodur            #+#    #+#             */
-/*   Updated: 2026/01/26 12:03:12 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/01/28 19:04:35 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,5 @@ void Animal::makeSound() const
 
 string Animal::getType() const
 {
-	return(this->type);
+	return (this->type);
 }

@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 15:49:12 by gbodur            #+#    #+#             */
-/*   Updated: 2026/01/20 16:31:23 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/01/28 19:05:27 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,5 @@ void WrongCat::makeSound() const
 
 string WrongCat::getType() const
 {
-	return(this->type);
+	return (this->type);
 }
