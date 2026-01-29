@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 19:09:44 by gbodur            #+#    #+#             */
-/*   Updated: 2026/01/28 19:25:04 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/01/29 12:19:31 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,20 @@ MateriaSource::MateriaSource()
         this->learnInventory[i] = NULL;
 }
 
-MateriaSource::MateriaSource(const MateriaSource &src)
+MateriaSource::MateriaSource(const MateriaSource &materia)
 {
     for (int i = 0; i < 4; i++)
     {
-        if (src.learnInventory[i])
-            this->learnInventory[i] = src.learnInventory[i]->clone();
+        if (materia.learnInventory[i])
+            this->learnInventory[i] = materia.learnInventory[i]->clone();
         else
             this->learnInventory[i] = NULL;
     }
 }
 
-MateriaSource &MateriaSource::operator=(const MateriaSource &src)
+MateriaSource &MateriaSource::operator=(const MateriaSource &materia)
 {
-    if (this != &src)
+    if (this != &materia)
     {
         for (int i = 0; i < 4; i++)
         {
@@ -44,8 +44,8 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &src)
         }
         for (int i = 0; i < 4; i++)
         {
-            if (src.learnInventory[i])
-                this->learnInventory[i] = src.learnInventory[i]->clone();
+            if (materia.learnInventory[i])
+                this->learnInventory[i] = materia.learnInventory[i]->clone();
             else
                 this->learnInventory[i] = NULL;
         }
@@ -62,7 +62,7 @@ MateriaSource::~MateriaSource()
     }
 }
 
-void MateriaSource::learnMateria(AMateria* m)
+void MateriaSource::learnMateria(AMateria *m)
 {
     if (!m)
         return;
@@ -79,7 +79,7 @@ void MateriaSource::learnMateria(AMateria* m)
     delete m;
 }
 
-AMateria* MateriaSource::createMateria(string const & type)
+AMateria *MateriaSource::createMateria(string const &type)
 {
     for (int i = 0; i < 4; i++)
     {

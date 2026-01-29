@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 19:09:15 by gbodur            #+#    #+#             */
-/*   Updated: 2026/01/28 19:09:29 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/01/29 12:19:15 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ class MateriaSource : public IMateriaSource
 
     public:
         MateriaSource();
-        MateriaSource(const MateriaSource &src);
-        MateriaSource &operator=(const MateriaSource &src);
+        MateriaSource(const MateriaSource &materia);
+        MateriaSource &operator=(const MateriaSource &materia);
         ~MateriaSource();
-        virtual void learnMateria(AMateria* m);
-        virtual AMateria* createMateria(string const & type);
+        virtual void learnMateria(AMateria *m);
+        virtual AMateria* createMateria(string const &type);
 };
 
 #endif

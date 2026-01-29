@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 16:09:35 by gbodur            #+#    #+#             */
-/*   Updated: 2026/01/28 18:59:14 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/01/29 12:18:15 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ class ICharacter
 {
 	public:
 		virtual ~ICharacter() {}
-		virtual string const & getName() const = 0;
+		virtual string const &getName() const = 0;
 		virtual void equip(AMateria *m) = 0;
 		virtual void unequip(int idx) = 0;
-		virtual void use(int idx, ICharacter& target) = 0;
+		virtual void use(int idx, ICharacter &target) = 0;
 };
 
 #endif

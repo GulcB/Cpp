@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 16:09:24 by gbodur            #+#    #+#             */
-/*   Updated: 2026/01/28 19:18:55 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/01/29 12:17:32 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,16 @@ Cure::Cure() : AMateria("cure")
 
 }
 
-Cure::Cure(const Cure &src) : AMateria(src)
+Cure::Cure(const Cure &materia) : AMateria(materia)
 {
 
 }
 
-Cure &Cure::operator=(const Cure &src)
+Cure &Cure::operator=(const Cure &materia)
 {
-    if (this != &src)
+    if (this != &materia)
     {
-        AMateria::operator=(src);
+        AMateria::operator=(materia);
     }
     return (*this);
 }
@@ -39,12 +39,12 @@ Cure::~Cure()
 
 }
 
-AMateria* Cure::clone() const
+AMateria *Cure::clone() const
 {
     return (new Cure(*this));
 }
 
-void Cure::use(ICharacter& target)
+void Cure::use(ICharacter &target)
 {
     cout << "* heals " << target.getName() << "'s wounds *" << endl;
 }

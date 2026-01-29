@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 15:50:38 by gbodur            #+#    #+#             */
-/*   Updated: 2026/01/28 18:59:04 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/01/29 12:14:19 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ class AMateria
 		string type;
 	public:
 		AMateria();
-		AMateria(string const & type);
-        AMateria(const AMateria &src);
-        AMateria &operator=(const AMateria &src);
+		AMateria(string const &type);
+        AMateria(const AMateria &materia);
+        AMateria &operator=(const AMateria &materia);
 		virtual ~AMateria();
 		string const &getType() const;
 		virtual AMateria *clone() const = 0;

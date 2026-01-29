@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 16:09:20 by gbodur            #+#    #+#             */
-/*   Updated: 2026/01/28 19:18:30 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/01/29 12:16:54 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,28 +16,28 @@ using std::cout;
 using std::endl;
 using std::string;
 
-Character::Character(string const & name) : name(name)
+Character::Character(string const &name) : name(name)
 {
     for (int i = 0; i < 4; i++)
         this->inventory[i] = NULL;
 }
 
-Character::Character(const Character &src) : name(src.name)
+Character::Character(const Character &materia) : name(materia.name)
 {
     for (int i = 0; i < 4; i++)
     {
-        if (src.inventory[i])
-            this->inventory[i] = src.inventory[i]->clone();
+        if (materia.inventory[i])
+            this->inventory[i] = materia.inventory[i]->clone();
         else
             this->inventory[i] = NULL;
     }
 }
 
-Character &Character::operator=(const Character &src)
+Character &Character::operator=(const Character &materia)
 {
-    if (this != &src)
+    if (this != &materia)
     {
-        this->name = src.name;
+        this->name = materia.name;
         for (int i = 0; i < 4; i++)
         {
             if (this->inventory[i])
@@ -45,8 +45,8 @@ Character &Character::operator=(const Character &src)
         }
         for (int i = 0; i < 4; i++)
         {
-            if (src.inventory[i])
-                this->inventory[i] = src.inventory[i]->clone();
+            if (materia.inventory[i])
+                this->inventory[i] = materia.inventory[i]->clone();
             else
                 this->inventory[i] = NULL;
         }
@@ -63,12 +63,12 @@ Character::~Character()
     }
 }
 
-string const & Character::getName() const
+string const &Character::getName() const
 {
     return (this->name);
 }
 
-void Character::equip(AMateria* m)
+void Character::equip(AMateria *m)
 {
     if (!m)
         return;
@@ -94,7 +94,7 @@ void Character::unequip(int idx)
     }
 }
 
-void Character::use(int idx, ICharacter& target)
+void Character::use(int idx, ICharacter &target)
 {
     if (idx >= 0 && idx < 4 && this->inventory[idx])
         this->inventory[idx]->use(target);

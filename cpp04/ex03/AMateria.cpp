@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 16:05:10 by gbodur            #+#    #+#             */
-/*   Updated: 2026/01/28 19:17:41 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/01/29 12:16:06 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,20 @@ AMateria::AMateria()
 
 }
 
-AMateria::AMateria(string const & type)
+AMateria::AMateria(string const &type)
 {
     this->type = type;
 }
 
-AMateria::AMateria(const AMateria &src)
+AMateria::AMateria(const AMateria &materia)
 {
-    *this = src;
+    *this = materia;
 }
 
-AMateria &AMateria::operator=(const AMateria &src)
+AMateria &AMateria::operator=(const AMateria &materia)
 {
-    if (this != &src)
-        this->type = src.type;
+    if (this != &materia)
+        this->type = materia.type;
     return (*this);
 }
 

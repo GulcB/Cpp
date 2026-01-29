@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 16:09:38 by gbodur            #+#    #+#             */
-/*   Updated: 2026/01/28 19:00:50 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/01/29 12:18:25 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class IMateriaSource
     public:
         virtual ~IMateriaSource() {}
         virtual void learnMateria(AMateria*) = 0;
-        virtual AMateria* createMateria(string const & type) = 0;
+        virtual AMateria *createMateria(string const &type) = 0;
 };
 
 #endif

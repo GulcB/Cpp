@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 16:09:28 by gbodur            #+#    #+#             */
-/*   Updated: 2026/01/28 19:03:22 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/01/29 12:17:11 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ class Cure : public AMateria
 {
     public:
         Cure();
-        Cure(const Cure &src);
-        Cure &operator=(const Cure &src);
+        Cure(const Cure &materia);
+        Cure &operator=(const Cure &materia);
         ~Cure();
-        virtual AMateria* clone() const;
-        virtual void use(ICharacter& target);
+        virtual AMateria *clone() const;
+        virtual void use(ICharacter &target);
 };
 
 #endif
