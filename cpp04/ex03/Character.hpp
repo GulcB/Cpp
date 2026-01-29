@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 16:09:22 by gbodur            #+#    #+#             */
-/*   Updated: 2026/01/29 12:16:29 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/01/29 16:02:49 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ class Character : public ICharacter
         virtual void equip(AMateria *m);
         virtual void unequip(int idx);
         virtual void use(int idx, ICharacter &target);
+		AMateria *getMateria(int idx);
 };
 
 #endif

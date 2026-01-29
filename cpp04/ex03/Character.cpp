@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 16:09:20 by gbodur            #+#    #+#             */
-/*   Updated: 2026/01/29 12:16:54 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/01/29 16:29:20 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void Character::equip(AMateria *m)
         }
     }
     cout << "Inventory is full!" << endl;
+	delete m;
 }
 
 void Character::unequip(int idx)
@@ -98,4 +99,11 @@ void Character::use(int idx, ICharacter &target)
 {
     if (idx >= 0 && idx < 4 && this->inventory[idx])
         this->inventory[idx]->use(target);
+}
+
+AMateria *Character::getMateria(int idx)
+{
+	if (idx >= 0 && idx < 4)
+        return this->inventory[idx];
+    return (NULL);
 }
