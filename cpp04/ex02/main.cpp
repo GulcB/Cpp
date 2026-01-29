@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 12:23:09 by gbodur            #+#    #+#             */
-/*   Updated: 2026/01/29 12:58:17 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/01/29 13:52:57 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void deepCopyTest()
     {
         Dog copy = original;
     }
-	cout << endl;
 	cout << "--- Real Cat ---" << endl;
 	Cat real;
     cout << "--- Copy Cat ---" << endl;
@@ -90,7 +89,7 @@ int main(int argc, char **argv)
     delete wrongAnimal;
     delete wrongCat;
 
-	cout << "--- ARRAY OF ANIMALS TEST (" << animalCount << " animals) ---" << endl;
+	cout << endl << "--- ARRAY OF ANIMALS TEST (" << animalCount << " animals) ---" << endl;
 	const AAnimal **animals = new const AAnimal*[animalCount];
 	for (int i = 0; i < animalCount; i++)
 	{
