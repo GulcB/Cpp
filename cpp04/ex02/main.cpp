@@ -6,11 +6,13 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 12:23:09 by gbodur            #+#    #+#             */
-/*   Updated: 2026/01/26 14:43:50 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/01/29 12:58:17 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AAnimal.hpp"
+#include "Cat.hpp"
+#include "Dog.hpp"
 #include "WrongAnimal.hpp"
 #include "WrongCat.hpp"
 
