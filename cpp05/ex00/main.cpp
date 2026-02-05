@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 11:59:46 by gbodur            #+#    #+#             */
-/*   Updated: 2026/02/05 15:05:28 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/02/05 12:47:18 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int main(int argc, char **argv)
 {
 	stringstream	ss;
 	int	grade;
-	
 
 	if (argc != 3)
 	{
@@ -32,23 +31,20 @@ int main(int argc, char **argv)
 	}
 	ss << argv[2];
 	ss >> grade;
-	if (ss.fail())
+	if (ss.fail() || !ss.eof())
 	{
-		cout << "Bureaucrat grade should be between 1 to 150." << endl;
+		cout << "Bureaucrat grade should be pure integer" << endl;
 		return (1);
 	}
 	try
 	{
 		Bureaucrat bureaucrat(argv[1], grade);
-
 		cout << "---------------------------------" << endl;
 		cout << bureaucrat << endl;
 		cout << "---------------------------------" << endl;
-
 		cout << "Testing increment..." << endl;
 		bureaucrat.incrementGrade();
 		cout << bureaucrat << endl;
-
 		cout << "Testing decrement..." << endl;
 		bureaucrat.decrementGrade();
 		cout << bureaucrat << endl;
