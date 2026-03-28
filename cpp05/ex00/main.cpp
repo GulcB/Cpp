@@ -43,11 +43,25 @@ int main(int argc, char **argv)
 		cout << bureaucrat << endl;
 		cout << "---------------------------------" << endl;
 		cout << "Testing increment..." << endl;
-		bureaucrat.incrementGrade();
-		cout << bureaucrat << endl;
+		try
+		{
+			bureaucrat.incrementGrade();
+			cout << bureaucrat << endl;
+		}
+		catch (const exception &e)
+		{
+			cerr << "Increment exception caught: " << e.what() << endl;
+		}
 		cout << "Testing decrement..." << endl;
-		bureaucrat.decrementGrade();
-		cout << bureaucrat << endl;
+		try
+		{
+			bureaucrat.decrementGrade();
+			cout << bureaucrat << endl;
+		}
+		catch (const exception &e)
+		{
+			cerr << "Decrement exception caught: " << e.what() << endl;
+		}
 	}
 	catch (const exception &e)
 	{
