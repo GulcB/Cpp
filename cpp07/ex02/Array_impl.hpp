@@ -6,24 +6,24 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 17:53:25 by gbodur            #+#    #+#             */
-/*   Updated: 2026/03/27 17:53:27 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/06/07 12:30:35 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 template <typename T>
-Array<T>::Array() : _array(NULL), _size(0)
+Array<T>::Array() : _array(0), _size(0)
 {
 }
 
 template <typename T>
-Array<T>::Array(unsigned int n) : _array(NULL), _size(n)
+Array<T>::Array(unsigned int n) : _array(0), _size(n)
 {
 	if (this->_size > 0)
 		this->_array = new T[this->_size]();
 }
 
 template <typename T>
-Array<T>::Array(const Array &array) : _array(NULL), _size(0)
+Array<T>::Array(const Array &array) : _array(0), _size(0)
 {
 	*this = array;
 }
@@ -34,7 +34,7 @@ Array<T> &Array<T>::operator=(const Array &array)
 	if (this != &array)
 	{
 		delete [] this->_array;
-		this->_array = NULL;
+		this->_array = 0;
 		this->_size = array._size;
 		if (this->_size > 0)
 		{
