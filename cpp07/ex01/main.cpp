@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 17:53:07 by gbodur            #+#    #+#             */
-/*   Updated: 2026/03/27 17:53:08 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/06/07 12:04:57 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,19 +92,19 @@ int main(int argc, char **argv)
 		decimalValues[i] = i + 0.5;
 	}
 	cout << "--- INT ARRAY BEFORE ---" << endl;
-	iter(numbers, static_cast<unsigned int>(arraySize), printElement<int>);
+	iter(numbers, (arraySize), printElement<int>);
 	cout << endl;
-	iter(numbers, static_cast<unsigned int>(arraySize), incrementInt);
+	iter(numbers, (arraySize), incrementInt);
 	cout << "--- INT ARRAY AFTER ---" << endl;
-	iter(numbers, static_cast<unsigned int>(arraySize), printElement<int>);
+	iter(numbers, (arraySize), printElement<int>);
 	cout << "\n\n--- STRING ARRAY BEFORE ---" << endl;
-	iter(words, static_cast<unsigned int>(arraySize), printElement<string>);
+	iter(words, (arraySize), printElement<string>);
 	cout << endl;
-	iter(words, static_cast<unsigned int>(arraySize), addSuffix);
+	iter(words, (arraySize), addSuffix);
 	cout << "--- STRING ARRAY AFTER ---" << endl;
-	iter(words, static_cast<unsigned int>(arraySize), printElement<string>);
+	iter(words, (arraySize), printElement<string>);
 	cout << "\n\n--- CONST DOUBLE ARRAY ---" << endl;
-	iter(constValues, static_cast<unsigned int>(arraySize), printElement<double>);
+	iter(constValues, (arraySize), printElement<double>);
 	cout << endl;
 	delete [] numbers;
 	delete [] words;
