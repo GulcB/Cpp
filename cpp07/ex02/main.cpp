@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 17:53:35 by gbodur            #+#    #+#             */
-/*   Updated: 2026/03/27 17:53:36 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/06/07 13:05:53 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include <iostream>
 #include <sstream>
 #include <string>
-#include <exception>
 #include <cstdlib>
 #include <ctime>
 
@@ -23,7 +22,6 @@ using std::cerr;
 using std::endl;
 using std::string;
 using std::stringstream;
-using std::exception;
 using std::srand;
 using std::rand;
 using std::time;
@@ -65,7 +63,7 @@ int main(int argc, char **argv)
 		cerr << "Error: Size cannot be negative." << endl;
 		return (1);
 	}
-	if (arraySize > 1000)
+	if (arraySize > 750)
 	{
 		cerr << "Error: Size is too large for test executable." << endl;
 		return (1);
