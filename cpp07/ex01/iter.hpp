@@ -6,40 +6,21 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 17:52:59 by gbodur            #+#    #+#             */
-/*   Updated: 2026/03/27 17:53:01 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/07/18 16:39:00 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ITER_HPP
 # define ITER_HPP
 
-template <typename T>
-void iter(T *array, const unsigned int length, void (*function)(T &))
+template <typename T, typename G>
+void iter(T *array, const unsigned int length, G function)
 {
-	unsigned int	i;
-
 	if (!array || !function)
 		return ;
-	i = 0;
-	while (i < length)
+	for (unsigned int i = 0; i < length; i++)
 	{
-		function(array[i]);
-		i++;
-	}
-}
-
-template <typename T>
-void iter(const T *array, const unsigned int length, void (*function)(const T &))
-{
-	unsigned int	i;
-
-	if (!array || !function)
-		return ;
-	i = 0;
-	while (i < length)
-	{
-		function(array[i]);
-		i++;
+        function(array[i]);
 	}
 }
 
