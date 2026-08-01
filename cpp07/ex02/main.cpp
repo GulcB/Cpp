@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 17:53:35 by gbodur            #+#    #+#             */
-/*   Updated: 2026/06/07 13:05:53 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/08/01 17:04:54 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int main(int argc, char **argv)
 	}
 	copyNumbers = numbers;
 	if (numbers.size() > 0)
-		numbers[0] = -999;
+		numbers[0] = -735;
 	words[0] = "hello";
 	words[1] = "template";
 	words[2] = "array";
