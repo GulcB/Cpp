@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   EasyFind.hpp                                       :+:      :+:    :+:   */
+/*   easyfind.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 09:09:22 by gbodur            #+#    #+#             */
-/*   Updated: 2026/08/01 15:31:50 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/08/23 06:02:51 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,24 @@
 # define EASYFIND_HPP
 
 # include <algorithm>
-# include <vector>
-# include <list>
-# include <iostream>
+# include <exception>
 
-using std::find;
+class ValueNotFoundException : public std::exception
+{
+public:
+    virtual const char* what() const throw() 
+	{
+        return "Error: Container does not have the value.";
+    }
+};
 
 template<typename T>
-T::iterator EasyFind(T container, int index)
+typename T::const_iterator easyfind(const T &container, int index)
 {
-	if(container.empty())
-		return ;
-	for (int i = 0; i < container.size(); i++)
-	{
-		int search = find(container.begin(), container.end(), index);
-		if(search == index)
-			return (index);
-		else
-			
-		
-	}
-}
+	typename T::const_iterator it = std::find(container.begin(), container.end(), index);
+	if (it == container.end())
+        throw ValueNotFoundException();
+	return it;
+};
 
 #endif
