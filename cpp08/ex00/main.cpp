@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 09:09:18 by gbodur            #+#    #+#             */
-/*   Updated: 2026/08/23 06:24:30 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/08/24 10:10:25 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int main(int argc, char **argv)
     }
     
     vector<int> vec;
-    stringstream ss(argv[1]); // Doğru constructor kullanımı
+    stringstream ss(argv[1]);
     int value;
     string remaining;
     
@@ -53,7 +53,7 @@ int main(int argc, char **argv)
         return 1;
     }
 
-    stringstream targetStream(argv[2]); // Doğru constructor kullanımı
+    stringstream targetStream(argv[2]);
     int target;
     if (!(targetStream >> target) || !targetStream.eof())
     {
