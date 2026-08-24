@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 09:10:57 by gbodur            #+#    #+#             */
-/*   Updated: 2026/08/24 07:54:50 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/08/24 13:18:17 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,40 @@ int main(int argc, char **argv)
         cout << *lit << endl;
         ++lit;
     }
+	cout << "\n--- 3. Copy / Assignment Test ---" << endl;
 
-    cout << "\n--- 3. Custom Argument Test ---" << endl;
+    MutantStack<int> copyStack(mstack);
+    MutantStack<int> assignedStack;
+
+    assignedStack = mstack;
+
+    cout << "Original top: " << mstack.top() << endl;
+    cout << "Copy top: " << copyStack.top() << endl;
+    cout << "Assigned top: " << assignedStack.top() << endl;
+	
+	cout << "\n--- 4. Const Iterator Test ---" << endl;
+
+    const MutantStack<int> constStack(mstack);
+
+    cout << "Const stack contents: ";
+    for (MutantStack<int>::const_iterator cit = constStack.begin();
+         cit != constStack.end(); ++cit)
+    {
+        cout << *cit << " ";
+    }
+    cout << endl;
+
+    cout << "\n--- 5. Reverse Iterator Test ---" << endl;
+
+    cout << "Reverse stack contents: ";
+    for (MutantStack<int>::reverse_iterator rit = mstack.rbegin();
+         rit != mstack.rend(); ++rit)
+    {
+        cout << *rit << " ";
+    }
+    cout << endl;
+
+    cout << "\n--- 6. Custom Argument Test ---" << endl;
     if (argc > 1)
     {
         MutantStack<int> argStack;
@@ -88,8 +120,9 @@ int main(int argc, char **argv)
             argStack.push(std::atoi(argv[i]));
         }
 
-        cout << "Arguments pushed to MutantStack. Elements:" << endl;
-        for (MutantStack<int>::iterator argIt = argStack.begin(); argIt != argStack.end(); ++argIt)
+        cout << "Arguments pushed to MutantStack. Elements: ";
+        for (MutantStack<int>::iterator argIt = argStack.begin();
+			argIt != argStack.end(); ++argIt)
         {
             cout << *argIt << " ";
         }
@@ -97,7 +130,9 @@ int main(int argc, char **argv)
     }
     else
     {
-        cout << "No additional arguments provided. Run with './ex02 <numbers>' to test dynamic inputs." << endl;
+        cerr << "No additional arguments provided." << endl;
+		cout << "Usage: ./mutantStack <numbers>" << endl;
+		
     }
 
     return 0;
