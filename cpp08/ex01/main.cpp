@@ -6,13 +6,12 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 09:10:46 by gbodur            #+#    #+#             */
-/*   Updated: 2026/08/24 10:07:03 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/08/24 12:55:43 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 #include <iostream>
-#include <vector>
 #include <list>
 #include <cstdlib>
 #include <ctime>
@@ -29,20 +28,24 @@ using std::stringstream;
 
 int main(int argc, char **argv)
 {
-	if (argc != 2)
+	int count = 10000;
+
+    if (argc > 2)
     {
         cerr << "Error: Invalid arguments." << endl;
-        cerr << "Usage: ./span  <number_of_elements>" << endl;
+        cerr << "Usage: ./span [number_of_elements]" << endl;
         return 1;
     }
-	stringstream ss(argv[1]);
-	int count;
-	
-	if (!(ss >> count) || !ss.eof()|| count < 0)
+
+    if (argc == 2)
     {
-        ss.clear();
-        cerr << "Error: Please provide a valid positive integer." << endl;
-        return 1;
+        stringstream ss(argv[1]);
+        if (!(ss >> count) || !ss.eof() || count < 0)
+        {
+            cerr << "Error: Please provide a single non-negative integer for the number of elements." << endl;
+    		cerr << "Usage: ./span [number_of_elements]" << endl;
+    		return 1;
+        }
     }
     cout << "--- 1. Subject Basic Test ---" << endl;
     try
@@ -63,16 +66,25 @@ int main(int argc, char **argv)
 
     cout << "\n--- 2. Exception Testing (Empty / 1 Element) ---" << endl;
     try
-	{
+    {
         Span emptySpan(10);
-        emptySpan.addNumber(42);
         emptySpan.shortestSpan();
     }
     catch (exception &e)
-	{
-        cerr << "Caught successfully: " << e.what() << endl;
+    {
+        cerr << "Empty Span caught successfully: " << e.what() << endl;
     }
 
+    try
+    {
+        Span oneElementSpan(10);
+        oneElementSpan.addNumber(42);
+        oneElementSpan.longestSpan();
+    }
+    catch (exception &e)
+    {
+        cerr << "One-element Span caught successfully: " << e.what() << endl;
+    }
     cout << "\n--- 3. Exception Testing (Capacity Overflow) ---" << endl;
     try
 	{
@@ -97,9 +109,19 @@ int main(int argc, char **argv)
 		{
             randomNumbers.push_back(std::rand()); 
         }
+		if (count <= 100)
+		{
+		    cout << "Generated numbers: ";
+		    for (vector<int>::const_iterator it = randomNumbers.begin();
+		         it != randomNumbers.end(); ++it)
+		    {
+		        cout << *it << " ";
+		    }
+		    cout << endl;
+		}
         dynamicSpan.addNumber(randomNumbers.begin(), randomNumbers.end());
         
-        cout << "Successfully added" << count << "numbers via Iterators!" << endl;
+        cout << "Successfully added " << count << " numbers via Iterators!" << endl;
         cout << "Dynamic Shortest: " << dynamicSpan.shortestSpan() << endl;
         cout << "Dynamic Longest: " << dynamicSpan.longestSpan() << endl;
     }
@@ -108,7 +130,7 @@ int main(int argc, char **argv)
         cerr << e.what() << endl;
     }
 
-    cout << "\n--- 5. Polymorphism Test with std::list Iterators ---" << endl;
+    cout << "\n--- 5. Range Test with std::list Iterators ---" << endl;
     try
 	{
         Span listSpan(10);

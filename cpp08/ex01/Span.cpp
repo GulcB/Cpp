@@ -6,11 +6,9 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 09:10:50 by gbodur            #+#    #+#             */
-/*   Updated: 2026/08/23 06:37:01 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/08/24 12:58:52 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "Span.hpp"
 
 #include "Span.hpp"
 #include <limits>
@@ -52,7 +50,7 @@ unsigned int Span::shortestSpan() const
     
     for (std::vector<int>::const_iterator it = sortedData.begin(); it != sortedData.end() - 1; ++it)
     {
-        unsigned int diff = static_cast<unsigned int>(*(it + 1) - *it);
+        unsigned int diff = static_cast<unsigned int>(*(it + 1)) - static_cast<unsigned int>(*it);
         if (diff < minSpan)
             minSpan = diff;
     }
@@ -67,15 +65,16 @@ unsigned int Span::longestSpan() const
     std::vector<int>::const_iterator minIt = std::min_element(_data.begin(), _data.end());
     std::vector<int>::const_iterator maxIt = std::max_element(_data.begin(), _data.end());
 
-    return (static_cast<unsigned int>(*maxIt - *minIt));
+    return (static_cast<unsigned int>(*maxIt) - static_cast<unsigned int>(*minIt));
 }
 
 const char *Span::SpanFullException::what() const throw()
 {
-    return "Fatal: Cannot add number, Span capacity is full.";
+    return "Cannot add number, Span capacity is full.";
 }
 
 const char *Span::SpanNotEnoughNumbersException::what() const throw()
 {
-    return "Error: At least two numbers are required to calculate a span.";
+	
+    return "At least two numbers are required to calculate a span.";
 }
