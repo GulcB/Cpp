@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 09:10:46 by gbodur            #+#    #+#             */
-/*   Updated: 2026/08/23 06:38:41 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/08/24 10:07:03 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include <list>
 #include <cstdlib>
 #include <ctime>
+#include <sstream>
+
 
 using std::cout;
 using std::cerr;
@@ -23,9 +25,25 @@ using std::endl;
 using std::vector;
 using std::list;
 using std::exception;
+using std::stringstream;
 
-int main()
+int main(int argc, char **argv)
 {
+	if (argc != 2)
+    {
+        cerr << "Error: Invalid arguments." << endl;
+        cerr << "Usage: ./span  <number_of_elements>" << endl;
+        return 1;
+    }
+	stringstream ss(argv[1]);
+	int count;
+	
+	if (!(ss >> count) || !ss.eof()|| count < 0)
+    {
+        ss.clear();
+        cerr << "Error: Please provide a valid positive integer." << endl;
+        return 1;
+    }
     cout << "--- 1. Subject Basic Test ---" << endl;
     try
 	{
@@ -68,22 +86,22 @@ int main()
         cerr << "Caught successfully: " << e.what() << endl;
     }
 
-    cout << "\n--- 4. Nerd Level: Iterator Range & Massive Data Test (100,000 Elements) ---" << endl;
+    cout << "\n--- 4. Dynamic Data Test (" << count << " Elements) ---" << endl;
     try
 	{
-        Span massiveSpan(100000);
+        Span dynamicSpan(count);
         vector<int> randomNumbers;
         
-        std::srand(std::time(NULL));
-        for (int i = 0; i < 100000; ++i) 
+        std::srand(static_cast<unsigned int>(std::time(NULL)));
+        for (int i = 0; i < count; ++i) 
 		{
             randomNumbers.push_back(std::rand()); 
         }
-        massiveSpan.addNumber(randomNumbers.begin(), randomNumbers.end());
+        dynamicSpan.addNumber(randomNumbers.begin(), randomNumbers.end());
         
-        cout << "Successfully added 100,000 numbers via Iterators!" << endl;
-        cout << "Massive Shortest: " << massiveSpan.shortestSpan() << endl;
-        cout << "Massive Longest: " << massiveSpan.longestSpan() << endl;
+        cout << "Successfully added" << count << "numbers via Iterators!" << endl;
+        cout << "Dynamic Shortest: " << dynamicSpan.shortestSpan() << endl;
+        cout << "Dynamic Longest: " << dynamicSpan.longestSpan() << endl;
     }
     catch (exception &e)
 	{
