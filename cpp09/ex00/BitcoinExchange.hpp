@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/18 10:38:13 by gbodur            #+#    #+#             */
-/*   Updated: 2026/09/19 18:28:16 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/09/19 20:17:22 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,17 @@ class BitcoinExchange
 {
 	private:
 	    map<string, float> _database;
+		string trim(const string &str) const;
+    	bool isValidDate(const string &date) const;
+    	float parseValue(const string &valStr) const;
 	public:
 	    BitcoinExchange();
 	    BitcoinExchange(const BitcoinExchange &other);
 	    BitcoinExchange &operator=(const BitcoinExchange &other);
 	    ~BitcoinExchange();
 
-		void loadDatabase(const string& filename);
+		void loadDatabase(const string &filename);
+		void processInput(const string &filename);
 };
 
 #endif

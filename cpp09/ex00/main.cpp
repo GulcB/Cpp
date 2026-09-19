@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/18 10:38:15 by gbodur            #+#    #+#             */
-/*   Updated: 2026/09/19 18:30:38 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/09/19 18:55:56 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,9 @@ int main(int argc, char **argv)
 	{
         BitcoinExchange btc;
         btc.loadDatabase("data.csv");
-
-        (void)argv;
-        
-    } catch (const exception &e)
+		btc.processInput(argv[1]);
+    }
+	catch (const exception &e)
 	{
         cerr << e.what() << endl;
         return 1;
