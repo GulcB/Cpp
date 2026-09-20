@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 20:29:04 by gbodur            #+#    #+#             */
-/*   Updated: 2026/09/20 00:15:44 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/09/20 00:21:45 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,12 @@
 # include <stdexcept>
 # include <cstdlib>
 # include <sys/time.h>
+# include <algorithm>
 
 using std::string;
 using std::vector;
 using std::deque;
+using std::pair;
 using std::runtime_error;
 
 class PmergeMe 
@@ -31,6 +33,9 @@ class PmergeMe
 	private:
 		vector<int> _vector;
 		deque<int>  _deque;
+		size_t getJacobsthal(size_t n) const;
+		void mergeInsertSortVector(vector<int> &arr);
+		void mergeInsertSortDeque(deque<int> &arr);
 	public:
 		PmergeMe();
 		PmergeMe(const PmergeMe &other);
@@ -38,7 +43,12 @@ class PmergeMe
 		~PmergeMe();
 
 		void parseArguments(int argc, char **argv);
-		void printContainer(const string &prefix, const vector<int> &cont) const;
+		void printContainer(const string &prefix) const;
+		void sortVector();
+		void sortDeque();
+		
+		size_t getVectorSize() const;
+		size_t getDequeSize() const;
 };
 
 #endif
