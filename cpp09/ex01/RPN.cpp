@@ -6,13 +6,14 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 20:29:08 by gbodur            #+#    #+#             */
-/*   Updated: 2026/09/21 14:36:35 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/09/21 17:41:21 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
 #include <sstream>
 #include <cctype>
+#include <climits>
 
 using std::cout;
 using std::cerr;
@@ -52,25 +53,47 @@ RPN &RPN::operator=(const RPN &other)
 RPN::~RPN() {}
 
 int RPN::add(int a, int b) const
-{ 
-	return a + b;
+{
+    if ((b > 0 && a > INT_MAX - b) ||
+        (b < 0 && a < INT_MIN - b))
+        throw runtime_error("Error");
+
+    return a + b;
 }
 
 int RPN::sub(int a, int b) const
-{ 
-	return a - b;
+{
+    if ((b < 0 && a > INT_MAX + b) ||
+        (b > 0 && a < INT_MIN + b))
+        throw runtime_error("Error");
+
+    return a - b;
 }
 
 int RPN::mul(int a, int b) const
-{ 
-	return a * b;
+{
+    if (a > 0)
+    {
+        if ((b > 0 && a > INT_MAX / b) ||
+            (b < 0 && b < INT_MIN / a))
+            throw runtime_error("Error");
+    }
+    else if (a < 0)
+    {
+        if ((b > 0 && a < INT_MIN / b) ||
+            (b < 0 && a < INT_MAX / b))
+            throw runtime_error("Error");
+    }
+
+    return a * b;
 }
 
-int RPN::div(int a, int b) const 
-{ 
-	if (b == 0)
-		throw runtime_error("Error"); 
-	return (a / b); 
+int RPN::div(int a, int b) const
+{
+    if (b == 0 || (a == INT_MIN && b == -1))
+        throw runtime_error("Error");
+
+    return a / b;
 }
 
 bool RPN::isOperator(char c) const
