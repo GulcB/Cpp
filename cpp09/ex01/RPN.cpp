@@ -6,11 +6,13 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 20:29:08 by gbodur            #+#    #+#             */
-/*   Updated: 2026/09/19 23:36:06 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/09/21 14:36:35 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
+#include <sstream>
+#include <cctype>
 
 using std::cout;
 using std::cerr;
@@ -97,30 +99,36 @@ void RPN::performOperation(char op)
 	throw runtime_error("Error");
 }
 
+
 void RPN::calculate(const string &expression)
 {
-	try 
-	{
-		for (size_t i = 0; i < expression.length(); i++)
-		{
-			char c = expression[i];
+    std::istringstream input(expression);
+    string token;
 
-			if (c == ' ')
-				continue;
-			else if (isdigit(c))
-				_stack.push(c - '0');
-			else if (isOperator(c))
-				performOperation(c);
-			else
-				throw runtime_error("Error");
-		}
-		if (_stack.size() != 1)
-			throw runtime_error("Error");
-		
-		cout << _stack.top() << endl;
-	}
-	catch (const std::exception &e)
-	{
-		cerr << e.what() << endl;
-	}
+    while (!_stack.empty())
+        _stack.pop();
+    try
+    {
+        while (input >> token)
+        {
+            if (token.length() != 1)
+                throw runtime_error("Error");
+
+            unsigned char c = static_cast<unsigned char>(token[0]);
+
+            if (std::isdigit(c))
+                _stack.push(c - '0');
+            else if (isOperator(c))
+                performOperation(c);
+            else
+                throw runtime_error("Error");
+        }
+        if (_stack.size() != 1)
+            throw runtime_error("Error");
+        cout << _stack.top() << endl;
+    }
+    catch (const std::exception &e)
+    {
+        cerr << e.what() << endl;
+    }
 }
