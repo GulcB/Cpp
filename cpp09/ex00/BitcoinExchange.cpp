@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/18 10:38:11 by gbodur            #+#    #+#             */
-/*   Updated: 2026/09/19 20:12:42 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/09/21 13:50:59 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ bool BitcoinExchange::isValidDate(const string &date) const
 	{
         if (i == 4 || i == 7)
 			continue;
-        if (!isdigit(date[i]))
+        if (!std::isdigit(static_cast<unsigned char>(date[i])))
 			return false;
     }
 
@@ -77,20 +77,35 @@ bool BitcoinExchange::isValidDate(const string &date) const
     int month = std::atoi(date.substr(5, 2).c_str());
     int day = std::atoi(date.substr(8, 2).c_str());
 
-    if (year < 1900 || month < 1 || month > 12 || day < 1 || day > 31)
+    if (year < 1 || month < 1 || month > 12)
         return false;
 
-    return true;
+	const int daysInMonth[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+	
+	int maxDay = daysInMonth[month - 1];
+	
+	bool isLeapYear = (year % 400 == 0 ||
+                      (year % 4 == 0 && year % 100 != 0));
+
+	if (month == 2 && isLeapYear)
+		maxDay = 29;
+
+    return (day >= 1 && day <= maxDay);
 }
 
 float BitcoinExchange::parseValue(const string &valStr) const
 {
+	if (valStr.empty() ||
+        valStr.find_first_not_of("0123456789+-.eEf") != string::npos)
+        throw runtime_error("bad input => " + valStr);
+
     char *endptr;
     double parsed = std::strtod(valStr.c_str(), &endptr);
 
-    if (*endptr != '\0' && *endptr != 'f') 
+    if (endptr == valStr.c_str() ||
+		(*endptr != '\0' && !(*endptr == 'f' && endptr[1] == '\0')))
         throw runtime_error("bad input => " + valStr);
-    if (parsed < 0) 
+    if (parsed < 0.0) 
         throw runtime_error("not a positive number.");
     if (parsed > 1000.0) 
         throw runtime_error("too large a number.");
