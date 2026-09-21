@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/18 10:38:13 by gbodur            #+#    #+#             */
-/*   Updated: 2026/09/19 20:17:22 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/09/21 14:15:48 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ class BitcoinExchange
 		string trim(const string &str) const;
     	bool isValidDate(const string &date) const;
     	float parseValue(const string &valStr) const;
+		float parseDatabaseRate(const string &rateStr) const;
 	public:
 	    BitcoinExchange();
 	    BitcoinExchange(const BitcoinExchange &other);

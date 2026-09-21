@@ -6,11 +6,13 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/18 10:38:11 by gbodur            #+#    #+#             */
-/*   Updated: 2026/09/21 13:50:59 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/09/21 14:07:27 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
+#include <cerrno>
+#include <limits>
 
 using std::cout;
 using std::endl;
@@ -28,27 +30,68 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other)
 
 BitcoinExchange::~BitcoinExchange() {}
 
+
+float BitcoinExchange::parseDatabaseRate(const string &rateStr) const
+{
+    if (rateStr.empty() ||
+        rateStr.find_first_not_of("0123456789+-.eE") != string::npos)
+        throw runtime_error("invalid database rate => " + rateStr);
+
+    char *endptr;
+    errno = 0;
+    double rate = std::strtod(rateStr.c_str(), &endptr);
+
+    if (endptr == rateStr.c_str() || *endptr != '\0' ||
+        errno == ERANGE || rate < 0.0 ||
+        rate > std::numeric_limits<float>::max())
+        throw runtime_error("invalid database rate => " + rateStr);
+
+    return static_cast<float>(rate);
+}
+
 void BitcoinExchange::loadDatabase(const string &filename)
 {
     ifstream file(filename.c_str());
+
     if (!file.is_open())
         throw runtime_error("Error: could not open database file.");
 
     string line;
-    std::getline(file, line);
+
+    if (!std::getline(file, line) ||
+        trim(line) != "date,exchange_rate")
+        throw runtime_error("Error: invalid database header.");
+
+    map<string, float> newDatabase;
 
     while (std::getline(file, line))
-	{
-        size_t delimPos = line.find(',');
-        if (delimPos != string::npos)
-		{
-            string date = line.substr(0, delimPos);
-            string rateStr = line.substr(delimPos + 1);
-            float rate = std::atof(rateStr.c_str());
-            _database[date] = rate;
-        }
+    {
+        if (trim(line).empty())
+            continue;
+
+        size_t delim = line.find(',');
+
+        if (delim == string::npos)
+            throw runtime_error("Error: invalid database row => " + line);
+
+        string date = trim(line.substr(0, delim));
+        string rateStr = trim(line.substr(delim + 1));
+
+        if (!isValidDate(date))
+            throw runtime_error("Error: invalid database date => " + date);
+
+        float rate = parseDatabaseRate(rateStr);
+
+        if (newDatabase.find(date) != newDatabase.end())
+            throw runtime_error("Error: duplicate database date => " + date);
+
+        newDatabase[date] = rate;
     }
-    file.close();
+
+    if (file.bad() || newDatabase.empty())
+        throw runtime_error("Error: invalid or empty database.");
+
+    _database.swap(newDatabase);
 }
 
 string BitcoinExchange::trim(const string &str) const
@@ -112,45 +155,55 @@ float BitcoinExchange::parseValue(const string &valStr) const
     return (static_cast<float>(parsed));
 }
 
+
 void BitcoinExchange::processInput(const string &filename)
 {
     ifstream file(filename.c_str());
+
     if (!file.is_open())
     {
         cout << "Error: could not open file." << endl;
         return;
     }
+
     string line;
-    std::getline(file, line);
+    bool firstLine = true;
 
     while (std::getline(file, line))
     {
-        if (line.empty())
+        if (firstLine)
+        {
+            firstLine = false;
+
+            if (trim(line) == "date | value")
+                continue;
+        }
+        if (trim(line).empty())
             continue;
-        try 
+        try
         {
             size_t delim = line.find('|');
+
             if (delim == string::npos)
                 throw runtime_error("bad input => " + line);
+
             string date = trim(line.substr(0, delim));
             string valStr = trim(line.substr(delim + 1));
-			
+
             if (!isValidDate(date))
                 throw runtime_error("bad input => " + date);
 
-            float val = parseValue(valStr); 
+            float val = parseValue(valStr);
             map<string, float>::const_iterator it = _database.upper_bound(date);
-            
+
             if (it == _database.begin())
                 throw runtime_error("date is older than any record in database.");
             --it;
-
             cout << date << " => " << val << " = " << (val * it->second) << endl;
-        } 
-        catch (const std::exception& e) 
+        }
+        catch (const std::exception &e)
         {
             cout << "Error: " << e.what() << endl;
         }
     }
-    file.close();
 }
