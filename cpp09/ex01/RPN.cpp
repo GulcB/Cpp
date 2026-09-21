@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 20:29:08 by gbodur            #+#    #+#             */
-/*   Updated: 2026/09/21 17:41:21 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/09/21 19:17:50 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,6 @@ void RPN::performOperation(char op)
 	throw runtime_error("Error");
 }
 
-
 void RPN::calculate(const string &expression)
 {
     std::istringstream input(expression);
@@ -130,28 +129,24 @@ void RPN::calculate(const string &expression)
 
     while (!_stack.empty())
         _stack.pop();
-    try
+
+    while (input >> token)
     {
-        while (input >> token)
-        {
-            if (token.length() != 1)
-                throw runtime_error("Error");
-
-            unsigned char c = static_cast<unsigned char>(token[0]);
-
-            if (std::isdigit(c))
-                _stack.push(c - '0');
-            else if (isOperator(c))
-                performOperation(c);
-            else
-                throw runtime_error("Error");
-        }
-        if (_stack.size() != 1)
+        if (token.length() != 1)
             throw runtime_error("Error");
-        cout << _stack.top() << endl;
+
+        unsigned char c = static_cast<unsigned char>(token[0]);
+
+        if (std::isdigit(c))
+            _stack.push(c - '0');
+        else if (isOperator(c))
+            performOperation(c);
+        else
+            throw runtime_error("Error");
     }
-    catch (const std::exception &e)
-    {
-        cerr << e.what() << endl;
-    }
+
+    if (_stack.size() != 1)
+        throw runtime_error("Error");
+
+    cout << _stack.top() << endl;
 }
