@@ -6,22 +6,32 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 20:29:00 by gbodur            #+#    #+#             */
-/*   Updated: 2026/09/20 00:25:04 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/11/12 10:58:14 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include <iomanip>
+#include <stdexcept>
+#include <sys/time.h>
 #include "PmergeMe.hpp"
 
 using std::cout;
 using std::cerr;
 using std::endl;
 
-long long getTimeMicroseconds()
+static void currentTime(struct timeval &tv)
 {
-	struct timeval tv;
-	gettimeofday(&tv, NULL);
-	return (tv.tv_sec * 1000000LL) + tv.tv_usec;
+	if (gettimeofday(&tv, NULL) != 0)
+		throw runtime_error("Error: could not read the clock.");
+}
+
+static double elapsedMicroseconds(const struct timeval &start, const struct timeval &end)
+{
+	double seconds = static_cast<double>(end.tv_sec - start.tv_sec);
+	double micros = static_cast<double>(end.tv_usec - start.tv_usec);
+
+	return seconds * 1000000.0 + micros;
 }
 
 int main(int argc, char **argv)
@@ -35,26 +45,32 @@ int main(int argc, char **argv)
 	try 
 	{
 		PmergeMe sorter;
-		sorter.parseArguments(argc, argv);
-		sorter.printContainer("Before: ");
+		struct timeval start;
+		struct timeval end;
 
-		long long startVec = getTimeMicroseconds();
+		currentTime(start);
+		sorter.fillVector(argc, argv);
 		sorter.sortVector();
-		long long endVec = getTimeMicroseconds();
+		currentTime(end);
+		double vectorTime = elapsedMicroseconds(start, end);
 
-		long long startDeq = getTimeMicroseconds();
+		currentTime(start);
+		sorter.fillDeque(argc, argv);
 		sorter.sortDeque();
-		long long endDeq = getTimeMicroseconds();
+		currentTime(end);
+		double dequeTime = elapsedMicroseconds(start, end);
 
-		sorter.printContainer("After:  ");
+		if (!sorter.containersMatch())
+			throw runtime_error("Error: vector and deque results differ.");
 
-		cout << "Time to process a range of " << sorter.getVectorSize() 
-			 << " elements with std::vector : " 
-			 << (endVec - startVec) << " us" << endl;
-			 
-		cout << "Time to process a range of " << sorter.getDequeSize() 
-			 << " elements with std::deque  : " 
-			 << (endDeq - startDeq) << " us" << endl;
+		sorter.printArguments("Before: ", argc, argv);
+		sorter.printVector("After:  ");
+
+		cout << std::fixed << std::setprecision(0);
+		cout << "Time to process a range of " << sorter.getVectorSize()
+			 << " elements with std::vector : " << vectorTime << " us" << endl;
+		cout << "Time to process a range of " << sorter.getDequeSize()
+			 << " elements with std::deque  : " << dequeTime << " us" << endl;
 	}
 	catch (const std::exception &e)
 	{
