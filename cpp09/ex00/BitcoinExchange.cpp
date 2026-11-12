@@ -6,12 +6,13 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/18 10:38:11 by gbodur            #+#    #+#             */
-/*   Updated: 2026/09/21 14:07:27 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/11/11 23:33:02 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 #include <cerrno>
+#include <cctype>
 #include <limits>
 
 using std::cout;
@@ -35,7 +36,7 @@ float BitcoinExchange::parseDatabaseRate(const string &rateStr) const
 {
     if (rateStr.empty() ||
         rateStr.find_first_not_of("0123456789+-.eE") != string::npos)
-        throw runtime_error("invalid database rate => " + rateStr);
+        throw runtime_error("Error: invalid database rate => " + rateStr);
 
     char *endptr;
     errno = 0;
@@ -44,7 +45,7 @@ float BitcoinExchange::parseDatabaseRate(const string &rateStr) const
     if (endptr == rateStr.c_str() || *endptr != '\0' ||
         errno == ERANGE || rate < 0.0 ||
         rate > std::numeric_limits<float>::max())
-        throw runtime_error("invalid database rate => " + rateStr);
+        throw runtime_error("Error: invalid database rate => " + rateStr);
 
     return static_cast<float>(rate);
 }
@@ -107,13 +108,13 @@ bool BitcoinExchange::isValidDate(const string &date) const
 {
     if (date.length() != 10 || date[4] != '-' || date[7] != '-')
         return false;
-    
+
     for (int i = 0; i < 10; i++)
-	{
+    {
         if (i == 4 || i == 7)
-			continue;
+            continue;
         if (!std::isdigit(static_cast<unsigned char>(date[i])))
-			return false;
+            return false;
     }
 
     int year = std::atoi(date.substr(0, 4).c_str());
@@ -123,48 +124,45 @@ bool BitcoinExchange::isValidDate(const string &date) const
     if (year < 1 || month < 1 || month > 12)
         return false;
 
-	const int daysInMonth[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-	
-	int maxDay = daysInMonth[month - 1];
-	
-	bool isLeapYear = (year % 400 == 0 ||
+    const int daysInMonth[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    int maxDay = daysInMonth[month - 1];
+    bool isLeapYear = (year % 400 == 0 ||
                       (year % 4 == 0 && year % 100 != 0));
 
-	if (month == 2 && isLeapYear)
-		maxDay = 29;
+    if (month == 2 && isLeapYear)
+        maxDay = 29;
 
     return (day >= 1 && day <= maxDay);
 }
 
 float BitcoinExchange::parseValue(const string &valStr) const
 {
-	if (valStr.empty() ||
+    if (valStr.empty() ||
         valStr.find_first_not_of("0123456789+-.eEf") != string::npos)
         throw runtime_error("bad input => " + valStr);
 
     char *endptr;
+    errno = 0;
     double parsed = std::strtod(valStr.c_str(), &endptr);
 
     if (endptr == valStr.c_str() ||
-		(*endptr != '\0' && !(*endptr == 'f' && endptr[1] == '\0')))
+        (*endptr != '\0' && !(*endptr == 'f' && endptr[1] == '\0')))
         throw runtime_error("bad input => " + valStr);
-    if (parsed < 0.0) 
+    if (errno == ERANGE)
+        throw runtime_error("bad input => " + valStr);
+    if (parsed < 0.0)
         throw runtime_error("not a positive number.");
-    if (parsed > 1000.0) 
+    if (parsed > 1000.0)
         throw runtime_error("too large a number.");
     return (static_cast<float>(parsed));
 }
-
 
 void BitcoinExchange::processInput(const string &filename)
 {
     ifstream file(filename.c_str());
 
     if (!file.is_open())
-    {
-        cout << "Error: could not open file." << endl;
-        return;
-    }
+        throw runtime_error("Error: could not open file.");
 
     string line;
     bool firstLine = true;
