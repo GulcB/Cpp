@@ -6,7 +6,7 @@
 /*   By: gbodur <gbodur@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 20:28:38 by gbodur            #+#    #+#             */
-/*   Updated: 2026/09/21 19:21:33 by gbodur           ###   ########.fr       */
+/*   Updated: 2026/11/11 23:40:00 by gbodur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <iostream>
 # include <string>
 # include <stack>
+# include <list>
 # include <stdexcept>
 
 using std::string;
@@ -26,7 +27,7 @@ using std::size_t;
 class RPN 
 {
 	private:
-		stack<int> _stack;
+		stack<int, std::list<int> > _stack;
 		typedef int (RPN::*OperationPtr)(int, int) const;
 		char			_operators[4];
 		OperationPtr	_functions[4];
